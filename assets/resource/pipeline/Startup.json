@@ -1,34 +1,74 @@
 {
-    "启动游戏": {
+    "StartGame": {
         "post_wait_freezes": 300,
         "next": [
-            "点击开始游戏"
+            "Lobby"
         ],
         "interrupt": [
+            "CloseAnnouncement",
+            "ClickStart",
+            "Update",
             "StartNikke"
         ]
     },
-    "点击开始游戏": {
+    "ClickStart": {
+        "post_wait_freezes": 300,
         "recognition": "OCR",
         "expected": [
-            "点击",
-            "开始"
+            "点击开始"
         ],
         "roi": [
-            602,
-            550,
-            82,
-            36
+            0,
+            732,
+            720,
+            548
         ],
         "timeout": 60000,
-        "only_rec": true,
         "action": "Click",
-        "next": [
-            "点击开始游戏"
-        ]
+        "target": true
     },
     "StartNikke": {
         "action": "StartApp",
         "package": "com.tencent.nikke"
+    },
+    "Update": {
+        "recognition": "TemplateMatch",
+        "template": "update.png",
+        "timeout": 60000,
+        "roi": [
+            3,
+            353,
+            717,
+            609
+        ],
+        "action": "Click",
+        "target": true
+    },
+    "CloseAnnouncement": {
+        "recognition": "TemplateMatch",
+        "template": "CloseAnnouncement.png",
+        "roi": [
+            637,
+            116,
+            31,
+            31
+        ],
+        "timeout": 60000,
+        "action": "Click",
+        "target": true
+    },
+    "Lobby": {
+        "recognition": "OCR",
+        "expected": [
+            "商店"
+        ],
+        "roi": [
+            0,
+            732,
+            720,
+            548
+        ],
+        "timeout": 60000,
+        "action": "StopTask"
     }
 }
