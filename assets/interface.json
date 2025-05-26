@@ -9,7 +9,7 @@
         {
             "name": "官服",
             "path": [
-                "{PROJECT_DIR}/resource/base"
+                "{PROJECT_DIR}/resource"
             ]
         }
     ],
@@ -22,7 +22,7 @@
     "task": [
         {
             "name": "启动游戏",
-            "entry": "startup"
+            "entry": "StartGame"
         }
     ]
 }
