@@ -1,0 +1,121 @@
+{
+    "Awards": {
+        "doc": "每日任务",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            110,
+            50
+        ],
+        "roi": [
+            1240,
+            146,
+            38,
+            38
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "next": [
+            "Awards_1",
+            "Awards"
+        ]
+    },
+    "Awards_1": {
+        "doc": "任务、成就等红点",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            110,
+            50
+        ],
+        "roi": [
+            519,
+            106,
+            305,
+            35
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "next": [
+            "Awards_Receive"
+        ]
+    },
+    "Awards_Receive": {
+        "doc": "点击全部领取",
+        "recognition": "OCR",
+        "expected": [
+            "全部",
+            "领取"
+        ],
+        "roi": [
+            727,
+            633,
+            80,
+            30
+        ],
+        "action": "Click",
+        "next": [
+            "Awards_1",
+            "Awards_Completed"
+        ],
+        "interrupt": [
+            "Awards_Confirm"
+        ]
+    },
+    "Awards_Confirm": {
+        "doc": "点击领取奖励",
+        "recognition": "OCR",
+        "expected": [
+            "点击领取奖励"
+        ],
+        "roi": [
+            599,
+            430,
+            83,
+            25
+        ],
+        "only_rec": true,
+        "action": "Click"
+    },
+    "Awards_Completed": {
+        "doc": "全部领取变灰，且上方任务、成就等没有红点",
+        "recognition": "ColorMatch",
+        "lower": [
+            120,
+            120,
+            120
+        ],
+        "upper": [
+            140,
+            140,
+            140
+        ],
+        "roi": [
+            709,
+            633,
+            40,
+            32
+        ],
+        "connected": true,
+        "count": 100,
+        "action": "Click",
+        "target": [
+            872,
+            341,
+            40,
+            40
+        ]
+    }
+}
