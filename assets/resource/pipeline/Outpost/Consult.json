@@ -1,0 +1,271 @@
+{
+    "Consult": {
+        "next": [
+            "Consult_Yes"
+        ],
+        "interrupt": [
+            "ReturnMain"
+        ]
+    },
+    "Consult_Yes": {
+        "doc": "识别妮姬",
+        "recognition": "OCR",
+        "expected": [
+            "妮",
+            "姬"
+        ],
+        "roi": [
+            468,
+            676,
+            52,
+            32
+        ],
+        "action": "Click",
+        "next": [
+            "Consult_1",
+            "Consult_1_No",
+            "Consult_Yes"
+        ]
+    },
+    "Consult_1": {
+        "doc": "妮姬页面内的咨询有红点",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            130,
+            60
+        ],
+        "roi": [
+            1259,
+            66,
+            15,
+            15
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -20,
+            20,
+            0,
+            0
+        ],
+        "next": [
+            "Consult_loop",
+            "Consult_1"
+        ]
+    },
+    "Consult_1_No": {
+        "doc": "妮姬页面内的咨询没有红点",
+        "recognition": "TemplateMatch",
+        "template": "Outpost/Consult_1_No.png",
+        "roi": [
+            1257,
+            61,
+            20,
+            20
+        ],
+        "next": [
+            "GoToLobby"
+        ]
+    },
+    "Consult_loop": {
+        "doc": "点击好感等级",
+        "recognition": "OCR",
+        "expected": [
+            "好感",
+            "等级"
+        ],
+        "roi": [
+            86,
+            221,
+            80,
+            25
+        ],
+        "action": "Click",
+        "next": [
+            "Consult_Consult",
+            "Consult_loop"
+        ]
+    },
+    "Consult_Consult": {
+        "doc": "点击咨询",
+        "recognition": "OCR",
+        "expected": [
+            "咨询"
+        ],
+        "roi": [
+            697,
+            568,
+            61,
+            31
+        ],
+        "action": "Click",
+        "next": [
+            "Consult_Comfirm",
+            "Consult_Consult"
+        ]
+    },
+    "Consult_Comfirm": {
+        "doc": "点击咨询后的确定",
+        "recognition": "OCR",
+        "expected": [
+            "确认"
+        ],
+        "roi": [
+            712,
+            435,
+            40,
+            31
+        ],
+        "action": "Click",
+        "next": [
+            "Consult_Auto",
+            "Consult_Comfirm"
+        ]
+    },
+    "Consult_Auto": {
+        "doc": "咨询中点击自动",
+        "recognition": "OCR",
+        "expected": [
+            "自动"
+        ],
+        "roi": [
+            1075,
+            5,
+            47,
+            33
+        ],
+        "action": "Click",
+        "next": [
+            "Consult_Auto",
+            "Consult_Auto_On"
+        ]
+    },
+    "Consult_Auto_On": {
+        "doc": "咨询中自动已经开启",
+        "recognition": "OCR",
+        "expected": [
+            "自动",
+            "对话"
+        ],
+        "roi": [
+            1109,
+            45,
+            78,
+            42
+        ],
+        "next": [
+            "Consult_Select",
+            "Consult_Auto_On"
+        ]
+    },
+    "Consult_Select": {
+        "doc": "选择第一个对话选项",
+        "recognition": "TemplateMatch",
+        "template": "Outpost/Consult_Select.png",
+        "roi": [
+            453,
+            441,
+            74,
+            149
+        ],
+        "action": "Click",
+        "target_offset": [
+            165,
+            -30,
+            10,
+            10
+        ],
+        "post_wait_freezes": 100,
+        "next": [
+            "Consult_Levelup",
+            "Consult_Next",
+            "Consult_Select"
+        ]
+    },
+    "Consult_Levelup": {
+        "doc": "好感等级提升",
+        "recognition": "OCR",
+        "expected": [
+            "好感",
+            "等级"
+        ],
+        "roi": [
+            560,
+            359,
+            140,
+            55
+        ],
+        "action": "Click",
+        "next": [
+            "Consult_Next",
+            "Consult_Levelup"
+        ]
+    },
+    "Consult_Next": {
+        "doc": "右边箭头点下一位",
+        "recognition": "TemplateMatch",
+        "template": "Outpost/Consult_Next.png",
+        "roi": [
+            1232,
+            271,
+            42,
+            83
+        ],
+        "action": "Click",
+        "post_wait_freezes": 100,
+        "next": [
+            "Consult_Next1",
+            "Consult_Next"
+        ]
+    },
+    "Consult_Next1": {
+        "doc": "检查是否到了下一位",
+        "recognition": "ColorMatch",
+        "lower": [
+            50,
+            120,
+            180
+        ],
+        "upper": [
+            80,
+            150,
+            220
+        ],
+        "roi": [
+            662,
+            548,
+            40,
+            40
+        ],
+        "connected": true,
+        "count": 10,
+        "next": [
+            "Consult_Consult"
+        ]
+    },
+    "Consult_Stop": {
+        "doc": "判断咨询次数为0",
+        "recognition": "OCR",
+        "expected": [
+            "0",
+            "o",
+            "O"
+        ],
+        "roi": [
+            733,
+            600,
+            10,
+            13
+        ],
+        "next": [
+            "ReturnMain"
+        ]
+    }
+}
