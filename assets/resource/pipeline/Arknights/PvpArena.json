@@ -1,0 +1,42 @@
+{
+    "EnterPvpArena": {
+        "next": [
+            "EnterRookie",
+            "EnterSpecial"
+        ]
+    },
+    "EnterRookie": {
+        "doc": "进入新人竞技场",
+        "recognition": "OCR",
+        "expected": [
+            "新人竞技场",
+            "ROOKIE"
+        ],
+        "roi": [
+            465,
+            359,
+            76,
+            57
+        ],
+        "action": "Click",
+        "next": [
+            "EnterSpecial"
+        ]
+    },
+    "EnterSpecial": {
+        "doc": "特殊竞技场",
+        "recognition": "OCR",
+        "expected": [
+            "特殊竞技场",
+            "SPECIAL"
+        ],
+        "roi": [
+            656,
+            359,
+            66,
+            51
+        ],
+        "action": "Click",
+        "next": []
+    }
+}

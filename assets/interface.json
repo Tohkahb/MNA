@@ -17,6 +17,112 @@
         {
             "name": "启动游戏",
             "entry": "StartGame"
+        },
+        {
+            "name": "竞技场",
+            "entry": "Arknights",
+            "option": [
+                "新人竞技场",
+                "特殊竞技场"
+            ]
+        },
+        {
+            "name": "无限塔",
+            "entry": "Arknights",
+            "option": [
+                "无限塔",
+                "企业塔"
+            ]
         }
-    ]
+    ],
+    "option": {
+        "新人竞技场": {
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "TargetStageName": {
+                            "expected": [
+                                "竞技场"
+                            ],
+                            "next": [
+                                "EnterPvpArena",
+                                "TargetStageName"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "EnterRookie": {
+                            "enabled": false
+                        }
+                    }
+                }
+            ]
+        },
+        "特殊竞技场": {
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "TargetStageName": {
+                            "expected": [
+                                "竞技场"
+                            ],
+                            "next": [
+                                "EnterPvpArena",
+                                "TargetStageName"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "EnterSpecial": {
+                            "enabled": false
+                        }
+                    }
+                }
+            ]
+        },
+        "无限塔": {
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "TargetStageName": {
+                            "expected": [
+                                "无限之塔"
+                            ],
+                            "next": [
+                                "EnterTribeTower",
+                                "TargetStageName"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "企业塔": {
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "TargetStageName": {
+                            "expected": [
+                                "无限之塔"
+                            ],
+                            "next": [
+                                "EnterConpanyTower",
+                                "TargetStageName"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
 }

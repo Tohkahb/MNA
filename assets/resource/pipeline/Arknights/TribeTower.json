@@ -1,0 +1,19 @@
+{
+    "EnterTribeTower": {
+        "doc": "无限之塔",
+        "recognition": "OCR",
+        "expected": [
+            "无限之塔"
+        ],
+        "roi": [
+            708,
+            253,
+            111,
+            76
+        ],
+        "action": "Click"
+    },
+    "EnterConpanyTower": {
+        "doc": "企业四个塔"
+    }
+}

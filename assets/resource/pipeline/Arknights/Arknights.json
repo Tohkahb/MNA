@@ -1,0 +1,37 @@
+{
+    "Arknights": {
+        "next": [
+            "EnterArknights"
+        ],
+        "interrupt": [
+            "ReturnMain"
+        ]
+    },
+    "EnterArknights": {
+        "recognition": "TemplateMatch",
+        "template": "Arknights/EnterArknights.png",
+        "roi": [
+            839,
+            455,
+            113,
+            59
+        ],
+        "action": "Click",
+        "next": [
+            "TargetStageName",
+            "EnterArknights"
+        ]
+    },
+    "TargetStageName": {
+        "recognition": "OCR",
+        "expected": "Set in code.",
+        "roi": [
+            423,
+            90,
+            419,
+            575
+        ],
+        "action": "Click",
+        "next_doc": "Set in code."
+    }
+}
