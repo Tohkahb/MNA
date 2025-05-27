@@ -24,16 +24,17 @@
             548
         ],
         "timeout": 60000,
-        "action": "Click",
-        "target": true
+        "action": "Click"
     },
     "StartNikke": {
         "action": "StartApp",
         "package": "com.tencent.nikke"
     },
     "Update": {
-        "recognition": "TemplateMatch",
-        "template": "update.png",
+        "recognition": "OCR",
+        "expected": [
+            "确认"
+        ],
         "timeout": 60000,
         "roi": [
             3,
@@ -41,12 +42,11 @@
             717,
             609
         ],
-        "action": "Click",
-        "target": true
+        "action": "Click"
     },
     "CloseAnnouncement": {
         "recognition": "TemplateMatch",
-        "template": "CloseAnnouncement.png",
+        "template": "Startup/CloseAnnouncement.png",
         "roi": [
             637,
             116,
@@ -54,8 +54,7 @@
             31
         ],
         "timeout": 60000,
-        "action": "Click",
-        "target": true
+        "action": "Click"
     },
     "Lobby": {
         "recognition": "OCR",
