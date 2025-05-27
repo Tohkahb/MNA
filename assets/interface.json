@@ -22,6 +22,17 @@
             "entry": "StartGame"
         },
         {
+            "name": "领取挂机奖励",
+            "entry": "IdleReward",
+            "option": [
+                "每日免费2H奖励"
+            ]
+        },
+        {
+            "name": "派遣",
+            "entry": "Dispatch"
+        },
+        {
             "name": "新人竞技场",
             "entry": "Arknights",
             "option": [
@@ -46,9 +57,45 @@
                 "无限塔",
                 "企业塔"
             ]
+        },
+        {
+            "name": "咨询",
+            "entry": "Consult"
+        },
+        {
+            "name": "互赠好友点数",
+            "entry": "Friends"
+        },
+        {
+            "name": "商店免费道具",
+            "entry": "Store_Paid"
+        },
+        {
+            "name": "任务和通证证奖励",
+            "entry": "Awards"
         }
     ],
     "option": {
+        "每日免费2H奖励": {
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "IdleReward_2h": {
+                            "enabled": true
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "IdleReward_2h": {
+                            "enabled": false
+                        }
+                    }
+                }
+            ]
+        },
         "新人竞技场": {
             "cases": [
                 {
