@@ -1,4 +1,7 @@
 {
+    "name": "MNA",
+    "url": "https://github.com/Tohkahb/MNA",
+    "custom_title": "MNA 胜利女神Nikke小助手",
     "controller": [
         {
             "name": "ADB 默认方式",
