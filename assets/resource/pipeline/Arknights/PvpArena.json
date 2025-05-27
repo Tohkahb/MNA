@@ -111,6 +111,18 @@
             "BattleSettlement"
         ]
     },
+    "SpecialArena": {
+        "recognition": "TemplateMatch",
+        "template": "Arknights/EnterArknights.png",
+        "roi": [
+            656,
+            359,
+            66,
+            51
+        ],
+        "action": "Click",
+        "next": []
+    },
     "EnterSpecial": {
         "doc": "特殊竞技场",
         "recognition": "OCR",
@@ -125,6 +137,65 @@
             51
         ],
         "action": "Click",
-        "next": []
+        "next": [
+            "SpecialFlag"
+        ]
+    },
+    "SpecialFlag": {
+        "recognition": "OCR",
+        "expected": [
+            "特殊竞技场"
+        ],
+        "roi": [
+            608,
+            100,
+            64,
+            15
+        ],
+        "target_offset": [
+            0,
+            50,
+            0,
+            0
+        ],
+        "only_rec": true,
+        "action": "Click",
+        "next": [
+            "ClaimSpecialArenaRewards",
+            "SpecialFlag"
+        ]
+    },
+    "ClaimSpecialArenaRewards": {
+        "recognition": "OCR",
+        "expected": [
+            "领取"
+        ],
+        "roi": [
+            704,
+            629,
+            35,
+            21
+        ],
+        "action": "Click",
+        "next": [
+            "ClaimSpecialArenaRewards",
+            "ClaimSpecialArenaRewards1"
+        ]
+    },
+    "ClaimSpecialArenaRewards1": {
+        "recognition": "OCR",
+        "expected": [
+            "奖励"
+        ],
+        "roi": [
+            600,
+            266,
+            79,
+            39
+        ],
+        "action": "Click",
+        "next": [
+            "ReturnMain"
+        ]
     }
 }
