@@ -49,6 +49,7 @@
         ],
         "next": [
             "Dispatch_1_Yes",
+            "Dispatch_1_No",
             "Consult_Yes"
         ]
     },
@@ -83,6 +84,32 @@
         "next": [
             "Dispatch_AllDispatch",
             "Dispatch_1_Yes"
+        ]
+    },
+    "Dispatch_1_No": {
+        "doc": "派遣公告栏没有红点",
+        "recognition": "ColorMatch",
+        "lower": [
+            10,
+            10,
+            10
+        ],
+        "upper": [
+            60,
+            60,
+            60
+        ],
+        "roi": [
+            657,
+            651,
+            15,
+            15
+        ],
+        "connected": true,
+        "count": 100,
+        "next": [
+            "ReturnMain",
+            "Dispatch_1_No"
         ]
     },
     "Dispatch_AllDispatch": {
