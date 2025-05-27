@@ -1,0 +1,11 @@
+{
+    "Mail": {
+        "next": [
+            "Awards_Yes",
+            "Awards_No"
+        ],
+        "interrupt": [
+            "ReturnMain"
+        ]
+    }
+}
