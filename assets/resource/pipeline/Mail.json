@@ -1,11 +1,110 @@
 {
     "Mail": {
         "next": [
-            "Awards_Yes",
-            "Awards_No"
+            "Mail_Yes",
+            "Mail_No"
         ],
         "interrupt": [
             "ReturnMain"
+        ]
+    },
+    "Mail_No": {
+        "doc": "最右上角的邮件图标没有红点",
+        "recognition": "TemplateMatch",
+        "template": "Mail/Mail_No.png",
+        "roi": [
+            1230,
+            13,
+            10,
+            10
+        ],
+        "next": [
+            "Lobby"
+        ]
+    },
+    "Mail_Yes": {
+        "doc": "邮件",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            130,
+            60
+        ],
+        "roi": [
+            1211,
+            7,
+            38,
+            35
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -10,
+            10,
+            0,
+            0
+        ],
+        "next": [
+            "Mail_Receive",
+            "Mail_Yes"
+        ]
+    },
+    "Mail_Receive": {
+        "doc": "点击全部领取",
+        "recognition": "OCR",
+        "expected": [
+            "全部领取"
+        ],
+        "roi": [
+            443,
+            54,
+            398,
+            611
+        ],
+        "action": "Click",
+        "target": true,
+        "next": [
+            "Mail_Confirm"
+        ]
+    },
+    "Mail_Confirm": {
+        "doc": "点击领取奖励",
+        "recognition": "OCR",
+        "expected": [
+            "点击领取奖励"
+        ],
+        "roi": [
+            443,
+            211,
+            398,
+            284
+        ],
+        "action": "Click",
+        "target": true,
+        "next": [
+            "CloseMail"
+        ]
+    },
+    "CloseMail": {
+        "doc": "最右上角的邮件图标没有红点",
+        "recognition": "TemplateMatch",
+        "template": "Mail/CloseMail.png",
+        "roi": [
+            441,
+            45,
+            399,
+            150
+        ],
+        "action": "Click",
+        "target": true,
+        "next": [
+            "Lobby"
         ]
     }
 }
