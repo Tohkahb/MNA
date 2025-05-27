@@ -1,7 +1,7 @@
 <!-- markdownlint-disable MD033 MD041 -->
 <div align="center">
 
-<img alt="LOGO" src="https://github.com/user-attachments/assets/b8e4d737-d549-43f3-a2e7-a3727bf615a9" width="256" height="256" />
+<img alt="LOGO" src="https://raw.githubusercontent.com/Tohkahb/MNA/refs/heads/main/logo.PNG" width="256" height="256" />
 
 # MNA
 
