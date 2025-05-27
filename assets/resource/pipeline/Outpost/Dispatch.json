@@ -1,0 +1,180 @@
+{
+    "Dispatch": {
+        "next": [
+            "Dispatch_Yes",
+            "Dispatch_No"
+        ],
+        "interrupt": [
+            "ReturnMain"
+        ]
+    },
+    "Dispatch_No": {
+        "doc": "没有基地的红点",
+        "recognition": "TemplateMatch",
+        "template": "Awards/IdleReward_No.png",
+        "roi": [
+            410,
+            569,
+            12,
+            12
+        ]
+    },
+    "Dispatch_Yes": {
+        "doc": "有基地红点",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            130,
+            60
+        ],
+        "roi": [
+            438,
+            516,
+            15,
+            15
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -20,
+            20,
+            0,
+            0
+        ],
+        "next": [
+            "Dispatch_1_Yes",
+            "Consult_Yes"
+        ]
+    },
+    "Dispatch_1_Yes": {
+        "doc": "派遣公告栏有红点",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            130,
+            60
+        ],
+        "roi": [
+            657,
+            651,
+            15,
+            15
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -20,
+            20,
+            0,
+            0
+        ],
+        "next": [
+            "Dispatch_AllDispatch",
+            "Dispatch_1_Yes"
+        ]
+    },
+    "Dispatch_AllDispatch": {
+        "doc": "点击全部派遣",
+        "recognition": "ColorMatch",
+        "lower": [
+            0,
+            160,
+            235
+        ],
+        "upper": [
+            20,
+            190,
+            255
+        ],
+        "roi": [
+            598,
+            593,
+            25,
+            25
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "next": [
+            "Dispatch_Dispatch",
+            "Dispatch_AllDispatch"
+        ]
+    },
+    "Dispatch_AllReceive": {
+        "doc": "点击全部领取",
+        "recognition": "ColorMatch",
+        "lower": [
+            0,
+            160,
+            235
+        ],
+        "upper": [
+            20,
+            190,
+            255
+        ],
+        "roi": [
+            708,
+            591,
+            85,
+            25
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "next": [
+            "Dispatch_Dispatch",
+            "Dispatch_Close"
+        ],
+        "interrupt": [
+            "Awards_Confirm"
+        ]
+    },
+    "Dispatch_Dispatch": {
+        "doc": "点击派遣",
+        "recognition": "OCR",
+        "expected": [
+            "派",
+            "遣"
+        ],
+        "roi": [
+            685,
+            591,
+            53,
+            42
+        ],
+        "action": "Click",
+        "next": [
+            "Dispatch_Close",
+            "Dispatch_Dispatch"
+        ]
+    },
+    "Dispatch_Close": {
+        "doc": "关闭派遣栏",
+        "recognition": "TemplateMatch",
+        "template": "Outpost/Dispatch_Close.png",
+        "roi": [
+            790,
+            76,
+            40,
+            40
+        ],
+        "action": "Click",
+        "next": [
+            "ReturnMain",
+            "Dispatch_Close"
+        ]
+    }
+}

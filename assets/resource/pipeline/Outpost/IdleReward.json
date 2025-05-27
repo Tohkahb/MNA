@@ -1,0 +1,153 @@
+{
+    "IdleReward": {
+        "next": [
+            "IdleReward_Yes",
+            "IdleReward_No"
+        ],
+        "interrupt": [
+            "ReturnMain"
+        ]
+    },
+    "IdleReward_No": {
+        "doc": "没有挂机奖励的红点",
+        "recognition": "TemplateMatch",
+        "template": "Awards/IdleReward_No.png",
+        "roi": [
+            410,
+            569,
+            12,
+            12
+        ]
+    },
+    "IdleReward_Yes": {
+        "doc": "有挂机奖励待领取",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            130,
+            60
+        ],
+        "roi": [
+            410,
+            565,
+            15,
+            15
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -20,
+            20,
+            0,
+            0
+        ],
+        "next": [
+            "IdleReward_2h",
+            "IdleReward_Acquire",
+            "IdleReward_Yes"
+        ]
+    },
+    "IdleReward_2h": {
+        "enabled": false,
+        "doc": "领两小时的",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            130,
+            60
+        ],
+        "roi": [
+            627,
+            586,
+            20,
+            20
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -20,
+            20,
+            0,
+            0
+        ],
+        "next": [
+            "IdleReward_2h_run",
+            "IdleReward_2h"
+        ]
+    },
+    "IdleReward_2h_run": {
+        "doc": "点击2h进行歼灭",
+        "recognition": "OCR",
+        "expected": [
+            "进行",
+            "歼灭"
+        ],
+        "roi": [
+            660,
+            536,
+            80,
+            30
+        ],
+        "action": "Click",
+        "next": [
+            "IdleReward_Acquire",
+            "IdleReward_2h_run"
+        ],
+        "interrupt": [
+            "Awards_Confirm"
+        ]
+    },
+    "IdleReward_Acquire": {
+        "doc": "点击获得奖励",
+        "recognition": "OCR",
+        "expected": [
+            "获得",
+            "奖励"
+        ],
+        "roi": [
+            695,
+            600,
+            80,
+            35
+        ],
+        "action": "Click",
+        "next": [
+            "Lobby",
+            "IdleReward_Acquire",
+            "IdleReward_Acquire_No"
+        ],
+        "interrupt": [
+            "Awards_Confirm"
+        ]
+    },
+    "IdleReward_Acquire_No": {
+        "doc": "无可领取的奖励",
+        "recognition": "OCR",
+        "expected": [
+            "确认"
+        ],
+        "roi": [
+            627,
+            434,
+            56,
+            31
+        ],
+        "action": "Click",
+        "next": [
+            "CloseBulletin",
+            "IdleReward_Acquire_No"
+        ]
+    }
+}
