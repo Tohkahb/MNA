@@ -1,0 +1,93 @@
+{
+    "Friends": {
+        "doc": "进入好友列表",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            20
+        ],
+        "upper": [
+            255,
+            110,
+            50
+        ],
+        "roi": [
+            1240,
+            200,
+            38,
+            38
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "next": [
+            "Present",
+            "Friends"
+        ]
+    },
+    "Present": {
+        "doc": "赠送社交点数",
+        "recognition": "OCR",
+        "expected": [
+            "赠送"
+        ],
+        "roi": [
+            702,
+            591,
+            107,
+            47
+        ],
+        "action": "Click",
+        "next": [
+            "Presented"
+        ],
+        "interrupt": [
+            "Confirm",
+            "Present"
+        ]
+    },
+    "Presented": {
+        "doc": "赠送完成，识别赠送按钮变灰",
+        "recognition": "ColorMatch",
+        "lower": [
+            120,
+            120,
+            120
+        ],
+        "upper": [
+            140,
+            140,
+            140
+        ],
+        "roi": [
+            684,
+            597,
+            40,
+            32
+        ],
+        "connected": true,
+        "count": 100,
+        "action": "Click",
+        "target": [
+            872,
+            341,
+            40,
+            40
+        ]
+    },
+    "Confirm": {
+        "doc": "点击确认",
+        "recognition": "OCR",
+        "expected": [
+            "确认"
+        ],
+        "roi": [
+            0,
+            0,
+            1280,
+            720
+        ],
+        "action": "Click"
+    }
+}
