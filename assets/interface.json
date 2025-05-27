@@ -36,6 +36,10 @@
             ]
         },
         {
+            "name": "邮件",
+            "entry": "Mail"
+        },
+        {
             "name": "无限塔",
             "entry": "Arknights",
             "option": [
