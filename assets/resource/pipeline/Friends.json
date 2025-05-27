@@ -1,5 +1,25 @@
 {
     "Friends": {
+        "next": [
+            "Friends_Yes",
+            "Friends_No"
+        ],
+        "interrupt": [
+            "ReturnMain"
+        ]
+    },
+    "Friends_No": {
+        "doc": "好友没有红点",
+        "recognition": "TemplateMatch",
+        "template": "Awards/Friends_No.png",
+        "roi": [
+            1247,
+            206,
+            22,
+            26
+        ]
+    },
+    "Friends_Yes": {
         "doc": "进入好友列表",
         "recognition": "ColorMatch",
         "lower": [
@@ -29,7 +49,7 @@
         ],
         "next": [
             "Present",
-            "Friends"
+            "Friends_Yes"
         ]
     },
     "Present": {
@@ -73,7 +93,7 @@
             32
         ],
         "connected": true,
-        "count": 100,
+        "count": 300,
         "action": "Click",
         "target": [
             872,

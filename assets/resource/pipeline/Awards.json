@@ -1,5 +1,25 @@
 {
     "Awards": {
+        "next": [
+            "Awards_Yes",
+            "Awards_No"
+        ],
+        "interrupt": [
+            "ReturnMain"
+        ]
+    },
+    "Awards_No": {
+        "doc": "最右上角的任务奖励没有红点",
+        "recognition": "TemplateMatch",
+        "template": "Awards/Awards_No.png",
+        "roi": [
+            1244,
+            151,
+            25,
+            25
+        ]
+    },
+    "Awards_Yes": {
         "doc": "每日任务",
         "recognition": "ColorMatch",
         "lower": [
@@ -28,22 +48,38 @@
             0
         ],
         "next": [
-            "Awards_1",
-            "Awards"
+            "Awards_Task",
+            "Awards_Yes"
+        ]
+    },
+    "Awards_Task": {
+        "doc": "判断进入任务界面",
+        "recognition": "OCR",
+        "expected": [
+            "任务"
+        ],
+        "roi": [
+            608,
+            58,
+            69,
+            41
+        ],
+        "next": [
+            "Awards_1"
         ]
     },
     "Awards_1": {
         "doc": "任务、成就等红点",
         "recognition": "ColorMatch",
         "lower": [
-            200,
+            140,
             30,
             0
         ],
         "upper": [
             255,
             130,
-            60
+            120
         ],
         "roi": [
             519,
@@ -52,7 +88,7 @@
             35
         ],
         "connected": true,
-        "count": 10,
+        "count": 4,
         "action": "Click",
         "target_offset": [
             -10,
@@ -62,7 +98,11 @@
         ],
         "next": [
             "Awards_Receive",
-            "Awards_1"
+            "Awards_1",
+            "Awards_Completed"
+        ],
+        "interrupt": [
+            "Awards_Confirm"
         ]
     },
     "Awards_Receive": {
@@ -122,16 +162,24 @@
             32
         ],
         "connected": true,
-        "count": 100,
+        "count": 300,
         "action": "Click",
         "target": [
             872,
             341,
             40,
             40
+        ],
+        "next": [
+            "MissionPass_Yes",
+            "Awards_Completed",
+            "MissionPass_No"
         ]
     },
-    "MissionPass": {
+    "MissionPass_No": {
+        "doc": "暂时没想到没有红点，怎么直接跳过该任务"
+    },
+    "MissionPass_Yes": {
         "doc": "通行证",
         "recognition": "ColorMatch",
         "lower": [
@@ -161,7 +209,7 @@
         ],
         "next": [
             "MissionPass_1",
-            "MissionPass"
+            "MissionPass_Yes"
         ]
     },
     "MissionPass_1": {
@@ -239,7 +287,7 @@
             20
         ],
         "connected": true,
-        "count": 100,
+        "count": 300,
         "action": "Click",
         "target": [
             872,
