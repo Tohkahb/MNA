@@ -1,3 +1,275 @@
 {
-
+    "Store_Paid": {
+        "doc": "打开付费商店",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            130,
+            60
+        ],
+        "roi": [
+            414,
+            415,
+            25,
+            25
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -20,
+            10,
+            0,
+            0
+        ],
+        "next": [
+            "Store_Paid_Normal",
+            "Store_Paid"
+        ]
+    },
+    "Store_Paid_Normal": {
+        "doc": "点击普通礼包",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            130,
+            60
+        ],
+        "roi": [
+            150,
+            135,
+            25,
+            25
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -10,
+            10,
+            0,
+            0
+        ],
+        "next": [
+            "Store_Paid_Normal_1",
+            "Store_Paid_Normal"
+        ]
+    },
+    "Store_Paid_Normal_1": {
+        "doc": "点击每日每周每月礼包",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            130,
+            60
+        ],
+        "roi": [
+            208,
+            185,
+            265,
+            25
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -10,
+            10,
+            0,
+            0
+        ],
+        "next": [
+            "Store_Paid_Free",
+            "Store_Paid_Normal_1"
+        ]
+    },
+    "Store_Paid_Free": {
+        "doc": "点击免费商品",
+        "recognition": "OCR",
+        "expected": [
+            "免费"
+        ],
+        "roi": [
+            50,
+            441,
+            56,
+            34
+        ],
+        "action": "Click",
+        "next": [
+            "Store_Paid_Normal_1",
+            "Store_Paid_Completed"
+        ],
+        "interrupt": [
+            "Awards_Confirm"
+        ]
+    },
+    "Store_Paid_Completed": {
+        "doc": "每日每周每月没有红点，识别售罄",
+        "recognition": "OCR",
+        "expected": [
+            "售",
+            "罄"
+        ],
+        "roi": [
+            54,
+            345,
+            49,
+            27
+        ],
+        "action": "StopTask"
+    },
+    "Store": {
+        "doc": "打开商店",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            130,
+            60
+        ],
+        "roi": [
+            433,
+            446,
+            20,
+            20
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -25,
+            25,
+            0,
+            0
+        ],
+        "next": [
+            "Store_Normal",
+            "Store"
+        ]
+    },
+    "Store_Normal": {
+        "doc": "选择普通商店",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            130,
+            60
+        ],
+        "roi": [
+            39,
+            249,
+            20,
+            20
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -25,
+            25,
+            0,
+            0
+        ],
+        "next": [
+            "Store_Free",
+            "Store_Normal"
+        ]
+    },
+    "Store_Free": {
+        "doc": "点击免费商品",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            130,
+            60
+        ],
+        "roi": [
+            162,
+            354,
+            20,
+            20
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -25,
+            25,
+            0,
+            0
+        ],
+        "next": [
+            "Store_Buy",
+            "Store_Free"
+        ],
+        "interrupt": [
+            "Awards_Confirm"
+        ]
+    },
+    "Store_Buy": {
+        "doc": "点击购买",
+        "recognition": "OCR",
+        "expected": [
+            "购买"
+        ],
+        "roi": [
+            692,
+            597,
+            45,
+            25
+        ],
+        "action": "Click",
+        "next": [
+            "Store_Completed",
+            "Store_Buy"
+        ],
+        "interrupt": [
+            "Awards_Confirm"
+        ]
+    },
+    "Store_Completed": {
+        "doc": "没有红点，识别售罄",
+        "recognition": "OCR",
+        "expected": [
+            "售",
+            "罄"
+        ],
+        "roi": [
+            111,
+            423,
+            43,
+            25
+        ],
+        "action": "StopTask"
+    }
 }
