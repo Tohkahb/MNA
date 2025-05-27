@@ -11,15 +11,23 @@
     },
     "ReturnMain": {
         "doc": "返回主界面，任务开始前用",
-        "recognition": "TemplateMatch",
-        "template": "General/ReturnMain.png",
-        "roi": [
-            98,
-            666,
-            24,
-            29
+        "recognition": "OCR",
+        "expected": [
+            "返回"
         ],
-        "action": "Click",
-        "post_wait_freezes": 300
+        "roi": [
+            45,
+            671,
+            33,
+            17
+        ],
+        "target_offset": [
+            55,
+            0,
+            0,
+            0
+        ],
+        "only_rec": true,
+        "action": "Click"
     }
 }

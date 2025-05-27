@@ -19,10 +19,16 @@
             "entry": "StartUp"
         },
         {
-            "name": "竞技场",
+            "name": "新人竞技场",
             "entry": "Arknights",
             "option": [
-                "新人竞技场",
+                "新人竞技场"
+            ]
+        },
+        {
+            "name": "特殊竞技场（仅领取奖励）",
+            "entry": "Arknights",
+            "option": [
                 "特殊竞技场"
             ]
         },
@@ -46,7 +52,7 @@
                                 "竞技场"
                             ],
                             "next": [
-                                "EnterPvpArena",
+                                "EnterRookie",
                                 "TargetStageName"
                             ]
                         }
@@ -72,7 +78,7 @@
                                 "竞技场"
                             ],
                             "next": [
-                                "EnterPvpArena",
+                                "EnterSpecial",
                                 "TargetStageName"
                             ]
                         }
