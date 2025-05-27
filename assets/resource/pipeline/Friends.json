@@ -21,6 +21,12 @@
         "connected": true,
         "count": 10,
         "action": "Click",
+        "target_offset": [
+            -10,
+            10,
+            0,
+            0
+        ],
         "next": [
             "Present",
             "Friends"

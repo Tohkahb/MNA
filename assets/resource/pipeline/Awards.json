@@ -21,6 +21,12 @@
         "connected": true,
         "count": 10,
         "action": "Click",
+        "target_offset": [
+            -10,
+            10,
+            0,
+            0
+        ],
         "next": [
             "Awards_1",
             "Awards"
@@ -48,8 +54,15 @@
         "connected": true,
         "count": 10,
         "action": "Click",
+        "target_offset": [
+            -10,
+            10,
+            0,
+            0
+        ],
         "next": [
-            "Awards_Receive"
+            "Awards_Receive",
+            "Awards_1"
         ]
     },
     "Awards_Receive": {
@@ -107,6 +120,123 @@
             633,
             40,
             32
+        ],
+        "connected": true,
+        "count": 100,
+        "action": "Click",
+        "target": [
+            872,
+            341,
+            40,
+            40
+        ]
+    },
+    "MissionPass": {
+        "doc": "通行证",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            110,
+            50
+        ],
+        "roi": [
+            1260,
+            87,
+            20,
+            25
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -10,
+            10,
+            0,
+            0
+        ],
+        "next": [
+            "MissionPass_1",
+            "MissionPass"
+        ]
+    },
+    "MissionPass_1": {
+        "doc": "通行证内的红点",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            110,
+            50
+        ],
+        "roi": [
+            605,
+            211,
+            220,
+            22
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -50,
+            10,
+            0,
+            0
+        ],
+        "next": [
+            "MissionPass_Receive",
+            "MissionPass_1"
+        ]
+    },
+    "MissionPass_Receive": {
+        "doc": "点击全部领取",
+        "recognition": "OCR",
+        "expected": [
+            "全部",
+            "领取"
+        ],
+        "roi": [
+            603,
+            667,
+            75,
+            20
+        ],
+        "action": "Click",
+        "next": [
+            "MissionPass_1",
+            "MissionPass_Completed"
+        ],
+        "interrupt": [
+            "Awards_Confirm"
+        ]
+    },
+    "MissionPass_Completed": {
+        "doc": "全部领取变灰，且上方奖励、任务没有红点",
+        "recognition": "ColorMatch",
+        "lower": [
+            120,
+            120,
+            120
+        ],
+        "upper": [
+            140,
+            140,
+            140
+        ],
+        "roi": [
+            600,
+            664,
+            20,
+            20
         ],
         "connected": true,
         "count": 100,
