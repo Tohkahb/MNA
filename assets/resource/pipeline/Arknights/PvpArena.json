@@ -2,8 +2,9 @@
     "EnterPvpArena": {
         "next": [
             "EnterRookie",
-            "EnterSpecial"
-        ]
+            "TargetStageName"
+        ],
+        "interrupt": []
     },
     "EnterRookie": {
         "doc": "进入新人竞技场",
@@ -20,7 +21,100 @@
         ],
         "action": "Click",
         "next": [
-            "EnterSpecial"
+            "RookieFlag"
+        ]
+    },
+    "RookieFlag": {
+        "doc": "新人竞技场标志",
+        "recognition": "OCR",
+        "expected": [
+            "新人竞技场"
+        ],
+        "roi": [
+            601,
+            111,
+            80,
+            31
+        ],
+        "next": [
+            "NoFreeBattlesLeft",
+            "FreeBattlesLeft"
+        ]
+    },
+    "NoFreeBattlesLeft": {
+        "doc": "无免费战斗",
+        "recognition": "OCR",
+        "expected": [
+            "免费"
+        ],
+        "roi": [
+            718,
+            367,
+            110,
+            272
+        ],
+        "inverse": true,
+        "next": [
+            "ReturnMain"
+        ]
+    },
+    "FreeBattlesLeft": {
+        "doc": "免费战斗",
+        "recognition": "OCR",
+        "expected": [
+            "免费"
+        ],
+        "roi": [
+            718,
+            367,
+            110,
+            272
+        ],
+        "action": "Click",
+        "next": [
+            "EnterBattle"
+        ]
+    },
+    "EnterBattle": {
+        "recognition": "OCR",
+        "expected": [
+            "进入战斗"
+        ],
+        "roi": [
+            595,
+            573,
+            86,
+            33
+        ],
+        "action": "Click",
+        "pre_delay": 1000,
+        "timeout": 99999,
+        "next": [
+            "EnterBattle",
+            "BattleSettlement"
+        ]
+    },
+    "BattleSettlement": {
+        "recognition": "OCR",
+        "expected": [
+            "奖励"
+        ],
+        "roi": [
+            614,
+            519,
+            52,
+            29
+        ],
+        "target_offset": [
+            0,
+            200,
+            0,
+            0
+        ],
+        "action": "Click",
+        "next": [
+            "RookieFlag",
+            "BattleSettlement"
         ]
     },
     "EnterSpecial": {

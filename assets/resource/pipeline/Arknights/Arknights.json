@@ -20,16 +20,17 @@
         "next": [
             "TargetStageName",
             "EnterArknights"
-        ]
+        ],
+        "interrupt": []
     },
     "TargetStageName": {
         "recognition": "OCR",
         "expected": "Set in code.",
         "roi": [
-            423,
-            90,
-            419,
-            575
+            479,
+            302,
+            327,
+            356
         ],
         "action": "Click",
         "next_doc": "Set in code."
