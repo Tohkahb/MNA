@@ -16,7 +16,7 @@
     "task": [
         {
             "name": "启动游戏",
-            "entry": "StartGame"
+            "entry": "StartUp"
         },
         {
             "name": "竞技场",

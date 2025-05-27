@@ -2,14 +2,42 @@
     "StartGame": {
         "post_wait_freezes": 300,
         "next": [
-            "Lobby"
+            "Bulletin"
         ],
         "interrupt": [
-            "CloseAnnouncement",
+            "FLASHSALE",
+            "CloseBulletin",
+            "Notice",
             "ClickStart",
             "Update",
             "StartNikke"
         ]
+    },
+    "Bulletin": {
+        "doc": "识别到公告界面",
+        "post_wait_freezes": 300,
+        "recognition": "OCR",
+        "expected": [
+            "公告"
+        ],
+        "roi": [
+            316,
+            39,
+            635,
+            117
+        ],
+        "next": [
+            "Lobby"
+        ],
+        "interrupt": [
+            "FLASHSALE",
+            "CloseBulletin",
+            "Notice",
+            "ClickStart",
+            "Update",
+            "StartNikke"
+        ],
+        "action": "DoNothing"
     },
     "ClickStart": {
         "post_wait_freezes": 300,
@@ -35,39 +63,70 @@
         "expected": [
             "确认"
         ],
-        "timeout": 60000,
         "roi": [
             3,
             353,
             717,
             609
         ],
-        "action": "Click"
+        "action": "Click",
+        "target": true
     },
-    "CloseAnnouncement": {
+    "CloseBulletin": {
+        "post_wait_freezes": 300,
         "recognition": "TemplateMatch",
-        "template": "Startup/CloseAnnouncement.png",
-        "roi": [
-            637,
-            116,
-            31,
-            31
+        "template": [
+            "Startup/CloseBulletin-1.png",
+            "Startup/CloseBulletin-2.png"
         ],
-        "timeout": 60000,
-        "action": "Click"
+        "roi": [
+            316,
+            39,
+            635,
+            146
+        ],
+        "action": "Click",
+        "target": true
     },
-    "Lobby": {
+    "FLASHSALE": {
+        "post_wait_freezes": 300,
         "recognition": "OCR",
         "expected": [
-            "商店"
+            "点击关闭画面"
         ],
         "roi": [
-            0,
-            732,
-            720,
-            548
+            595,
+            658,
+            90,
+            25
         ],
-        "timeout": 60000,
+        "action": "Click",
+        "target": true
+    },
+    "Notice": {
+        "post_wait_freezes": 300,
+        "recognition": "TemplateMatch",
+        "template": "Startup/Notice.png",
+        "roi": [
+            717,
+            439,
+            40,
+            25
+        ],
+        "action": "Click",
+        "target": true
+    },
+    "Lobby": {
+        "post_wait_freezes": 300,
+        "recognition": "TemplateMatch",
+        "template": "Startup/Lobby.png",
+        "roi": [
+            460,
+            606,
+            386,
+            114
+        ],
+        "green_mask": true,
         "action": "StopTask"
     }
 }
