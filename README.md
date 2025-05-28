@@ -86,7 +86,7 @@
 ## 鸣谢
 
 本项目由 **[MaaFramework](https://github.com/MaaXYZ/MaaFramework)** 强力驱动！  
-UI 由 [MFAAvalonia](https://github.com/SweetSmellFox/MFAAvalonia)~~ 大力支持！
+UI 由 **[MFAAvalonia](https://github.com/SweetSmellFox/MFAAvalonia)**~~ 大力支持！
 
 感谢以下开发者对本项目作出的贡献:
 
