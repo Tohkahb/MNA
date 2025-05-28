@@ -101,6 +101,7 @@
             30
         ],
         "action": "Click",
+        "post_wait_freezes": 500,
         "next": [
             "IdleReward_Acquire",
             "IdleReward_2h_run"
@@ -123,6 +124,7 @@
             35
         ],
         "action": "Click",
+        "post_wait_freezes": 500,
         "next": [
             "Lobby",
             "IdleReward_Acquire",

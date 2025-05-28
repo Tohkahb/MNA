@@ -96,6 +96,7 @@
             0,
             0
         ],
+        "post_wait_freezes": 500,
         "next": [
             "Awards_Receive",
             "Awards_1",
@@ -119,6 +120,7 @@
             30
         ],
         "action": "Click",
+        "post_wait_freezes": 500,
         "next": [
             "Awards_1",
             "Awards_Completed"
@@ -165,7 +167,7 @@
         "doc": "暂时没想到没有红点，怎么直接跳过该任务"
     },
     "MissionPass_Yes": {
-        "doc": "通行证",
+        "doc": "通行证有红点",
         "recognition": "ColorMatch",
         "lower": [
             200,
@@ -192,9 +194,11 @@
             0,
             0
         ],
+        "post_wait_freezes": 500,
         "next": [
             "MissionPass_1",
-            "MissionPass_Yes"
+            "MissionPass_Yes",
+            "MissionPass_Completed"
         ]
     },
     "MissionPass_1": {
@@ -244,41 +248,39 @@
             20
         ],
         "action": "Click",
+        "post_wait_freezes": 100,
         "next": [
             "MissionPass_1",
-            "MissionPass_Completed"
+            "MissionPass_Completed",
+            "MissionPass_Receive"
         ],
         "interrupt": [
             "Awards_Confirm"
         ]
     },
     "MissionPass_Completed": {
-        "doc": "全部领取变灰，且上方奖励、任务没有红点",
-        "recognition": "ColorMatch",
-        "lower": [
-            120,
-            120,
-            120
-        ],
-        "upper": [
-            140,
-            140,
-            140
+        "doc": "提示没有可领取奖励",
+        "recognition": "OCR",
+        "expected": [
+            "没有可领取的",
+            "奖励"
         ],
         "roi": [
-            600,
-            664,
-            20,
-            20
+            563,
+            340,
+            142,
+            48
         ],
-        "connected": true,
-        "count": 300,
         "action": "Click",
         "target": [
             872,
             341,
             40,
             40
+        ],
+        "next": [
+            "MissionPass_Yes",
+            "Lobby"
         ]
     }
 }
