@@ -1,22 +1,40 @@
 {
     "StartGame": {
-        "post_wait_freezes": 300,
+        "post_wait_freezes": 800,
         "next": [
-            "Bulletin"
+            "Bulletin",
+            "StartGameEnd"
         ],
         "interrupt": [
+            "Notice",
             "FLASHSALE",
             "CloseBulletin",
-            "Notice",
             "FirstCharge",
-            "CloseRELEASELOGIN",
-            "ClickRELEASELOGIN",
-            "RELEASELOGIN",
+            "RELEASELoginEnd",
+            "RELEASELogin",
+            "ClickRELEASELogin",
+            "CloseRELEASELogin",
+            "Wishlist",
             "ClickStart",
+            "Downloading",
             "Update",
-            "StartNikke",
-            "Downloading"
+            "StartNikke"
         ]
+    },
+    "StartGameEnd": {
+        "doc": "判定是否已经在大厅",
+        "post_wait_freezes": 800,
+        "recognition": "TemplateMatch",
+        "template": "Startup/Lobby.png",
+        "roi": [
+            460,
+            606,
+            386,
+            114
+        ],
+        "next": "Bulletin",
+        "timeout": 3000,
+        "on_error": "Lobby"
     },
     "Bulletin": {
         "doc": "识别到公告界面",
@@ -35,18 +53,20 @@
             "Lobby"
         ],
         "interrupt": [
+            "Notice",
             "FLASHSALE",
             "FirstCharge",
+            "RELEASELoginEnd",
+            "RELEASELogin",
             "CloseBulletin",
-            "Notice",
-            "CloseRELEASELOGIN",
-            "ClickRELEASELOGIN",
-            "RELEASELOGIN",
+            "ClickRELEASELogin",
+            "CloseRELEASELogin",
+            "Wishlist",
             "ClickStart",
+            "Downloading",
             "Update",
             "StartNikke"
-        ],
-        "action": "DoNothing"
+        ]
     },
     "ClickStart": {
         "post_wait_freezes": 300,
@@ -77,6 +97,22 @@
             353,
             717,
             609
+        ],
+        "action": "Click",
+        "target": true
+    },
+    "Wishlist": {
+        "doc": "关闭愿望清单,模拟室弹窗",
+        "post_wait_freezes": 300,
+        "recognition": "OCR",
+        "expected": [
+            "点击继续"
+        ],
+        "roi": [
+            433,
+            277,
+            418,
+            195
         ],
         "action": "Click",
         "target": true
@@ -117,15 +153,17 @@
         "recognition": "TemplateMatch",
         "template": "Startup/Notice.png",
         "roi": [
-            717,
-            439,
-            40,
-            25
+            630,
+            414,
+            231,
+            77
         ],
+        "threshold": 0.7,
         "action": "Click",
         "target": true
     },
-    "RELEASELOGIN": {
+    "RELEASELogin": {
+        "post_wait_freezes": 300,
         "doc": "领取7天登录奖励",
         "recognition": "OCR",
         "expected": [
@@ -137,11 +175,30 @@
             412,
             631
         ],
+        "index": -1,
         "action": "Click",
         "target": true
     },
-    "ClickRELEASELOGIN": {
-        "doc": "领取7天登录奖励",
+    "RELEASELoginEnd": {
+        "doc": "奖励已领取",
+        "post_wait_freezes": 300,
+        "recognition": "OCR",
+        "expected": [
+            "奖励已领取"
+        ],
+        "roi": [
+            427,
+            348,
+            412,
+            45
+        ],
+        "action": "Click",
+        "target": true,
+        "next": "CloseRELEASELogin"
+    },
+    "ClickRELEASELogin": {
+        "post_wait_freezes": 300,
+        "doc": "点击领取7天登录奖励",
         "recognition": "OCR",
         "expected": [
             "点击领取奖励"
@@ -155,10 +212,11 @@
         "action": "Click",
         "target": true
     },
-    "CloseRELEASELOGIN": {
+    "CloseRELEASELogin": {
+        "doc": "点击关闭领取7天登录奖励",
         "post_wait_freezes": 300,
         "recognition": "TemplateMatch",
-        "template": "Startup/CloseRELEASELOGIN.png",
+        "template": "Startup/CloseRELEASELogin.png",
         "roi": [
             443,
             54,
@@ -183,7 +241,7 @@
         "target": true
     },
     "Lobby": {
-        "post_wait_freezes": 300,
+        "post_wait_freezes": 800,
         "recognition": "TemplateMatch",
         "template": "Startup/Lobby.png",
         "roi": [
@@ -192,7 +250,6 @@
             386,
             114
         ],
-        "green_mask": true,
         "action": "StopTask"
     },
     "Downloading": {
