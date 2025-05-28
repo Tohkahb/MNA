@@ -222,7 +222,8 @@
         "post_wait_freezes": 100,
         "next": [
             "Consult_Next1",
-            "Consult_Next"
+            "Consult_Next",
+            "Consult_Stop"
         ]
     },
     "Consult_Next1": {
