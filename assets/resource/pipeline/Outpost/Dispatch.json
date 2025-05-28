@@ -48,9 +48,27 @@
             0
         ],
         "next": [
+            "DispatchFlag"
+        ]
+    },
+    "DispatchFlag": {
+        "doc": "找到派遣公告栏",
+        "recognition": "OCR",
+        "expected": [
+            "派遣",
+            "公告栏"
+        ],
+        "roi": [
+            615,
+            699,
+            49,
+            13
+        ],
+        "post_delay": 1000,
+        "next": [
             "Dispatch_1_Yes",
-            "Dispatch_1_No",
-            "Dispatch_Yes"
+            "Dispatch_Yes",
+            "Dispatch_1_No"
         ]
     },
     "Dispatch_1_Yes": {
