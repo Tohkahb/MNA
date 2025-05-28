@@ -134,6 +134,7 @@
             34
         ],
         "action": "Click",
+        "post_wait_freezes": 500,
         "next": [
             "Store_Paid_Normal_1",
             "Store_Paid_Completed"

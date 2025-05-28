@@ -49,8 +49,7 @@
         ],
         "next": [
             "Dispatch_1_Yes",
-            "Dispatch_1_No",
-            "Consult_Yes"
+            "Dispatch_1_No"
         ]
     },
     "Dispatch_1_Yes": {
