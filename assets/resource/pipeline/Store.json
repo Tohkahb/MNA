@@ -1,8 +1,8 @@
 {
     "Store_Paid": {
         "next": [
-            "Store_Paid_Yes",
-            "Store_Paid_No"
+            "Store_Paid_No",
+            "Store_Paid_Yes"
         ],
         "interrupt": [
             "ReturnMain"
@@ -11,7 +11,7 @@
     "Store_Paid_No": {
         "doc": "付费商店没有红点",
         "recognition": "TemplateMatch",
-        "template": "Awards/Store_Paid_No.png",
+        "template": "Store/Store_Paid_No.png",
         "roi": [
             423,
             423,
@@ -20,33 +20,19 @@
         ]
     },
     "Store_Paid_Yes": {
-        "doc": "打开付费商店",
-        "recognition": "ColorMatch",
-        "lower": [
-            200,
-            30,
-            0
-        ],
-        "upper": [
-            255,
-            130,
-            60
+        "doc": "点击付费商店",
+        "recognition": "OCR",
+        "expected": [
+            "付费",
+            "商店"
         ],
         "roi": [
-            414,
-            415,
-            25,
-            25
+            345,
+            421,
+            89,
+            47
         ],
-        "connected": true,
-        "count": 10,
         "action": "Click",
-        "target_offset": [
-            -20,
-            10,
-            0,
-            0
-        ],
         "next": [
             "Store_Paid_Normal",
             "Store_Paid_Yes"
@@ -57,35 +43,38 @@
     },
     "Store_Paid_Normal": {
         "doc": "点击普通礼包",
-        "recognition": "ColorMatch",
-        "lower": [
-            200,
-            30,
-            0
-        ],
-        "upper": [
-            255,
-            130,
-            60
-        ],
+        "recognition": "TemplateMatch",
+        "template": "Store/Store_Paid_Normal.png",
         "roi": [
-            150,
-            135,
-            25,
-            25
+            119,
+            134,
+            49,
+            48
         ],
-        "connected": true,
-        "count": 10,
         "action": "Click",
-        "target_offset": [
-            -10,
-            10,
-            0,
-            0
-        ],
         "next": [
+            "Store_Paid_Daily",
             "Store_Paid_Normal_1",
             "Store_Paid_Normal"
+        ]
+    },
+    "Store_Paid_Daily": {
+        "doc": "点击每日商店",
+        "recognition": "OCR",
+        "expected": [
+            "每日"
+        ],
+        "roi": [
+            153,
+            186,
+            85,
+            38
+        ],
+        "action": "Click",
+        "next": [
+            "Store_Paid_Free",
+            "Store_Paid_Normal_1",
+            "Store_Paid_Completed"
         ]
     },
     "Store_Paid_Normal_1": {
@@ -167,7 +156,7 @@
     "Store_No": {
         "doc": "商店没有红点",
         "recognition": "TemplateMatch",
-        "template": "Awards/Store_No.png",
+        "template": "Store/Store_No.png",
         "roi": [
             435,
             450,
@@ -311,6 +300,8 @@
             43,
             25
         ],
-        "action": "StopTask"
+        "next": [
+            "ReturnMain"
+        ]
     }
 }
