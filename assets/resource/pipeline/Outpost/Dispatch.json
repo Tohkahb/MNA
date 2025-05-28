@@ -49,7 +49,8 @@
         ],
         "next": [
             "Dispatch_1_Yes",
-            "Dispatch_1_No"
+            "Dispatch_1_No",
+            "Dispatch_Yes"
         ]
     },
     "Dispatch_1_Yes": {
@@ -82,6 +83,7 @@
         ],
         "next": [
             "Dispatch_AllDispatch",
+            "Dispatch_AllReceive",
             "Dispatch_1_Yes"
         ]
     },
@@ -160,7 +162,9 @@
         "connected": true,
         "count": 10,
         "action": "Click",
+        "post_wait_freezes": 500,
         "next": [
+            "Dispatch_AllDispatch",
             "Dispatch_Dispatch",
             "Dispatch_Close"
         ],
