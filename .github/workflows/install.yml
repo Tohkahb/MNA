@@ -1,42 +1,49 @@
 name: install
 
+# 触发工作流的条件
 on:
   push:
     tags:
-      - "v*"
+      - "v*"  # 当推送以v开头的tag时触发
     branches:
-      - "**"
-    paths:
+      - "**"  # 当推送到任意分支时触发
+    paths:    # 只有这些文件改动时才触发
       - ".github/workflows/install.yml"
       - "assets/**"
       - "**.py"
   pull_request:
     branches:
-      - "**"
-    paths:
+      - "**"  # PR提交到任意分支时触发
+    paths:    # 只有这些文件改动时才触发
       - ".github/workflows/install.yml"
       - "assets/**"
       - "**.py"
-  workflow_dispatch:
+  workflow_dispatch:  # 允许手动触发工作流
 
 jobs:
   meta:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4  # 检出代码
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # 获取完整历史记录以支持版本号生成
       - id: set_tag
         run: |
+          # 判断是否是发布版本
           is_release=${{ startsWith(github.ref, 'refs/tags/v') }}
+          # 获取当前tag
           tag=$(git describe --tags --match "v*" ${{ github.ref }} || true)
           if [[ $tag != v* ]]; then
+            # 如果不是v开头的tag,尝试获取最新release的tag
             tag=$(curl -sX GET "https://api.github.com/repos/${{ github.repository }}/releases/latest" --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' | awk '/tag_name/{print $4}' FS='["]')
             if [[ $tag != v* ]]; then
+              # 如果还是获取不到,使用v0.0.0
               tag="v0.0.0"
             fi
+            # 生成带日期和commit hash的tag
             tag=$(date "+$tag-%y%m%d-$(git rev-parse --short HEAD)")
           fi
+          # 如果不是release版本,添加ci前缀
           if ! $($is_release) ; then
             prefix=${tag%-*-*}
             suffix=${tag#$prefix-}
@@ -50,20 +57,21 @@ jobs:
       is_release: ${{ steps.set_tag.outputs.is_release }}
 
   install:
-    needs: meta
+    needs: meta  # 依赖meta job的输出
     runs-on: macos-latest
     strategy:
       matrix:
+        # 构建矩阵:不同系统和架构的组合
         os: [win, macos, linux, android]
         arch: [aarch64, x86_64]
-      fail-fast: false
+      fail-fast: false  # 某个组合失败时继续其他组合
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4  # 检出代码
         with:
-          submodules: true
+          submodules: true  # 同时检出子模块
 
-      - name: Download MaaFramework
+      - name: Download MaaFramework  # 下载MAA框架
         uses: robinraju/release-downloader@v1
         with:
           repository: MaaXYZ/MaaFramework
@@ -72,7 +80,7 @@ jobs:
           out-file-path: "deps"
           extract: true
 
-      - name: Download MFAAvalonia
+      - name: Download MFAAvalonia  # 下载MFAAvalonia(Android除外)
         if: matrix.os != 'android'
         uses: robinraju/release-downloader@v1
         with:
@@ -82,11 +90,12 @@ jobs:
           out-file-path: "MFA"
           extract: true
 
-      - name: Install
+      - name: Install  # 执行安装脚本
         shell: bash
         run: |
           python ./install.py ${{ needs.meta.outputs.tag }}
 
+          # 非Android系统时复制MFA文件
           if [[ "${{ matrix.os }}" != "android" ]]; then
             if [ -d "MFA" ]; then
               echo "Copying MFA files to install directory..."
@@ -99,28 +108,28 @@ jobs:
             echo "Skipping copy MFA for Android."
           fi
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4  # 上传构建产物
         with:
           name: MaaMNA-${{ matrix.os }}-${{ matrix.arch }}
           path: "install"
 
   release:
-    if: ${{ needs.meta.outputs.is_release == 'true' }}
-    needs: install
+    if: ${{ needs.meta.outputs.is_release == 'true' }}  # 只在发布版本时执行
+    needs: install  # 依赖install job完成
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4  # 下载所有构建产物
         with:
           path: assets
 
-      - run: |
+      - run: |  # 打包构建产物
           cd assets
           for f in *; do
             (cd $f && zip -r ../$f-${{ needs.meta.outputs.tag }}.zip .)
           done
 
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v2  # 创建GitHub Release
         with:
-          files: assets/*
+          files: assets/*  # 上传所有zip文件
           tag_name: ${{ needs.meta.outputs.tag }}
-          generate_release_notes: true
+          generate_release_notes: true  # 自动生成发布说明
