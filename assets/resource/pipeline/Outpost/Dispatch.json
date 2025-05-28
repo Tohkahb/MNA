@@ -52,7 +52,7 @@
         ]
     },
     "DispatchFlag": {
-        "doc": "找到派遣公告栏",
+        "doc": "等待页面加载，找到派遣公告栏",
         "recognition": "OCR",
         "expected": [
             "派遣",
