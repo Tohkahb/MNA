@@ -258,6 +258,7 @@
             0,
             0
         ],
+        "post_wait_freezes": 500,
         "next": [
             "Store_Buy",
             "Store_Free"
@@ -279,6 +280,7 @@
             25
         ],
         "action": "Click",
+        "post_wait_freezes": 500,
         "next": [
             "Store_Completed",
             "Store_Buy"
