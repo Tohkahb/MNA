@@ -14,7 +14,8 @@
             "RELEASELOGIN",
             "ClickStart",
             "Update",
-            "StartNikke"
+            "StartNikke",
+            "Downloading"
         ]
     },
     "Bulletin": {
@@ -193,5 +194,18 @@
         ],
         "green_mask": true,
         "action": "StopTask"
+    },
+    "Downloading": {
+        "doc": "识别正在下载更新",
+        "recognition": "OCR",
+        "expected": [
+            "支持后台下载"
+        ],
+        "roi": [
+            500,
+            625,
+            120,
+            45
+        ]
     }
 }
