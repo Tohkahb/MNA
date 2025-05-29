@@ -5,7 +5,17 @@ import json
 from typing import Dict, Any, Optional
 from typing import List, Tuple
 import subprocess
-from utils import logger
+
+try:
+    from utils import logger
+except ImportError:
+    # 如果logger不存在，创建一个简单的logger
+    import logging
+
+    logging.basicConfig(
+        format="%(asctime)s | %(levelname)s | %(message)s", level=logging.INFO
+    )
+    logger = logging
 
 # 新增工作目录设置
 current_file_path = os.path.abspath(__file__)
@@ -164,7 +174,7 @@ def setup_environment() -> bool:
 
 def agent():
     try:
-
+        from utils import logger
         from maa.agent.agent_server import AgentServer
         from maa.toolkit import Toolkit
         Toolkit.init_option("./")
@@ -180,7 +190,6 @@ def agent():
         sys.exit(1)
 
 def main():
-    logger.info(f"当前Python路径: {sys.executable}")
     setup_environment()
     agent()
 

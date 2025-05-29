@@ -31,7 +31,7 @@ def setup_logger(log_dir=None, console_level="INFO", file_level="DEBUG"):
     # 控制台日志配置
     logger.add(
         sys.stderr,
-        format="<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | <level>{level: <8}</level> | <level>{message}</level>",
+        format="<level>{level: <8}</level> | <level>{message}</level>",
         colorize=True,
         level=console_level,
     )
