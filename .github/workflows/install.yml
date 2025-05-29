@@ -24,86 +24,131 @@ jobs:
   meta:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4  # 检出代码
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 获取完整历史记录以支持版本号生成
+          fetch-depth: 0
       - id: set_tag
         run: |
-          # 判断是否是发布版本
           is_release=${{ startsWith(github.ref, 'refs/tags/v') }}
-          # 获取当前tag
           tag=$(git describe --tags --match "v*" ${{ github.ref }} || true)
           if [[ $tag != v* ]]; then
-            # 如果不是v开头的tag,尝试获取最新release的tag
             tag=$(curl -sX GET "https://api.github.com/repos/${{ github.repository }}/releases/latest" --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' | awk '/tag_name/{print $4}' FS='["]')
             if [[ $tag != v* ]]; then
-              # 如果还是获取不到,使用v0.0.0
               tag="v0.0.0"
             fi
-            # 生成带日期和commit hash的tag
             tag=$(date "+$tag-%y%m%d-$(git rev-parse --short HEAD)")
           fi
-          # 如果不是release版本,添加ci前缀
           if ! $($is_release) ; then
             prefix=${tag%-*-*}
             suffix=${tag#$prefix-}
             tag="$prefix-ci.$suffix"
           fi
+          is_prerelease=false
+          if [[ $tag =~ .*alpha.* || $tag =~ .*beta.* || $tag =~ .*rc.* || $tag =~ .*dev.* || $tag =~ .*-ci.* ]]; then
+            is_prerelease=true
+          fi
 
           echo tag=$tag | tee -a $GITHUB_OUTPUT
           echo is_release=$is_release | tee -a $GITHUB_OUTPUT
+          echo is_prerelease=$is_prerelease | tee -a $GITHUB_OUTPUT
     outputs:
       tag: ${{ steps.set_tag.outputs.tag }}
       is_release: ${{ steps.set_tag.outputs.is_release }}
+      is_prerelease: ${{ steps.set_tag.outputs.is_prerelease }}
 
-  install:
-    needs: meta  # 依赖meta job的输出
-    runs-on: macos-latest
+  windows:
+    needs: meta
+    runs-on: windows-latest
     strategy:
       matrix:
-        # 构建矩阵:不同系统和架构的组合
-        os: [win, macos, linux, android]
-        arch: [aarch64, x86_64]
-      fail-fast: false  # 某个组合失败时继续其他组合
+        arch: [x86_64]
+      fail-fast: false
 
     steps:
-      - uses: actions/checkout@v4  # 检出代码
+      - uses: actions/checkout@v4
         with:
-          submodules: true  # 同时检出子模块
+          submodules: true
 
-      - name: Setup Embed Python #下载python嵌入式版本
-        if: matrix.os == 'win'
-        shell: powershell
-        run: |
-          ./tools/ci/setup_embed_python.ps1
-
-      - name: Download MaaFramework  # 下载MAA框架
+      - name: Download MaaFramework
         uses: robinraju/release-downloader@v1
         with:
           repository: MaaXYZ/MaaFramework
-          fileName: "MAA-${{ matrix.os }}-${{ matrix.arch }}*"
+          fileName: "MAA-win-${{ matrix.arch }}*"
           latest: true
+          preRelease: true
           out-file-path: "deps"
           extract: true
 
-
-
-      - name: Download MFAAvalonia  # 下载MFAAvalonia(Android除外)
-        if: matrix.os != 'android'
-        uses: robinraju/release-downloader@v1
+      - name: Download MFAAvalonia  
+        uses: robinraju/release-downloader@v1  
         with:
           repository: SweetSmellFox/MFAAvalonia
-          fileName: "MFAAvalonia-*-${{ (matrix.os == 'win' && 'win') || (matrix.os == 'macos' && 'osx') || (matrix.os == 'linux' && 'linux') }}-${{ (matrix.arch == 'x86_64' && 'x64') || (matrix.arch == 'aarch64' && 'arm64') }}*"
+          fileName: "MFAAvalonia-*-win-x64*"
           latest: true
           out-file-path: "MFA"
           extract: true
 
-      - name: Install  # 执行安装脚本
+      - name: Setup Embed Python
+        shell: powershell
+        run: |
+          ./tools/ci/setup_embed_python.ps1
+
+      - name: Install
         shell: bash
         run: |
-          python ./install.py ${{ needs.meta.outputs.tag }}
+          python ./tools/install.py ${{ needs.meta.outputs.tag }}
 
-          # 非Android系统时复制MFA文件
+          if [ -d "MFA" ]; then
+            echo "Copying MFA files to install directory..."
+            mkdir -p install
+            cp -rpvn MFA/. install/
+          else
+            echo "MFA directory not found, skipping copy."
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: M9A-win-${{ matrix.arch }}
+          path: "install"
+
+  unix:
+    needs: meta
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        arch: [aarch64, x86_64]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Download MaaFramework
+        uses: robinraju/release-downloader@v1
+        with:
+          repository: MaaXYZ/MaaFramework
+          fileName: "MAA-${{ matrix.os == 'ubuntu-latest' && 'linux' || 'macos' }}-${{ matrix.arch }}*"
+          latest: true
+          preRelease: true
+          out-file-path: "deps"
+          extract: true
+
+      - name: Download MFAAvalonia  
+        uses: robinraju/release-downloader@v1  
+        with:
+          repository: SweetSmellFox/MFAAvalonia
+          fileName: "MFAAvalonia-*-${{ matrix.os == 'ubuntu-latest' && 'linux' || 'osx' }}-${{ matrix.arch == 'x86_64' && 'x64' || 'arm64' }}*"
+          latest: true
+          out-file-path: "MFA"
+          extract: true
+
+      - name: Install
+        shell: bash
+        run: |
+          python ./tools/install.py ${{ needs.meta.outputs.tag }}
+
           if [[ "${{ matrix.os }}" != "android" ]]; then
             if [ -d "MFA" ]; then
               echo "Copying MFA files to install directory..."
@@ -116,28 +161,59 @@ jobs:
             echo "Skipping copy MFA for Android."
           fi
 
-      - uses: actions/upload-artifact@v4  # 上传构建产物
+      - uses: actions/upload-artifact@v4
         with:
-          name: MaaMNA-${{ matrix.os }}-${{ matrix.arch }}
+          name: M9A-${{ matrix.os == 'ubuntu-latest' && 'linux' || 'macos' }}-${{ matrix.arch }}
           path: "install"
 
+
   release:
-    if: ${{ needs.meta.outputs.is_release == 'true' }}  # 只在发布版本时执行
-    needs: install  # 依赖install job完成
+    if: ${{ needs.meta.outputs.is_release == 'true' }}
+    needs: [meta, windows, unix]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v4  # 下载所有构建产物
+      - uses: actions/download-artifact@v4
         with:
           path: assets
 
-      - run: |  # 打包构建产物
+      - name: Check assets directory
+        run: |
+          ls -la assets
+          if [ -z "$(ls -A assets)" ]; then
+            echo "assets directory is empty"
+            exit 1
+          fi
+
+      - name: Compress and generate checksums
+        run: |
           cd assets
+          echo "Generating checksums for all zip files..."
+          checksum_file="checksums.sha256"
+          touch "$checksum_file"
+
           for f in *; do
-            (cd $f && zip -r ../$f-${{ needs.meta.outputs.tag }}.zip .)
+            if [ -d "$f" ]; then
+              echo "Processing directory: $f"
+              zip_file="$f-${{ needs.meta.outputs.tag }}.zip"
+              (cd "$f" && zip -r "../$zip_file" .)
+              if [ $? -eq 0 ]; then
+                echo "ZIP file created: ../$zip_file"
+                echo "Processing directory: $f"
+                sha256sum "$zip_file" >> "$checksum_file"
+                echo "" >> "$checksum_file"
+              else
+                echo "Failed to create ZIP file: ../$zip_file"
+                exit 1
+              fi
+            else
+              echo "Skipping non-directory: $f"
+            fi
           done
 
-      - uses: softprops/action-gh-release@v2  # 创建GitHub Release
+      - uses: softprops/action-gh-release@v2
         with:
-          files: assets/*  # 上传所有zip文件
+          files: assets/*
           tag_name: ${{ needs.meta.outputs.tag }}
-          generate_release_notes: true  # 自动生成发布说明
+          body: ${{ needs.changelog.outputs.release_body }}
+          draft: false
+          prerelease: ${{ needs.meta.outputs.is_prerelease == 'true' }}
