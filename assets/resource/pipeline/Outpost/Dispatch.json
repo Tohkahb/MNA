@@ -11,10 +11,10 @@
     "Dispatch_No": {
         "doc": "没有基地的红点,没写好",
         "recognition": "TemplateMatch",
-        "template": "Awards/IdleReward_No.png",
+        "template": "Outpost/Dispatch_No.png",
         "roi": [
             440,
-            519,
+            518,
             13,
             13
         ]
