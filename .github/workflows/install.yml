@@ -4,7 +4,7 @@ name: install
 on:
   push:
     tags:
-      - "v*"  # 当推送以v开头的tag时触发
+      - "v[0-9]+.[0-9]+.[0-9]+*"  # 匹配v数字.数字.数字及其后缀，如v1.2.3-alpha
     branches:
       - "**"  # 当推送到任意分支时触发
     paths:    # 只有这些文件改动时才触发
@@ -29,11 +29,15 @@ jobs:
           fetch-depth: 0
       - id: set_tag
         run: |
-          is_release=${{ startsWith(github.ref, 'refs/tags/v') }}
-          tag=$(git describe --tags --match "v*" ${{ github.ref }} || true)
-          if [[ $tag != v* ]]; then
+          # 检查是否是符合格式的发布标签
+          if [[ ${{ github.ref }} =~ ^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9]+)?$ ]]; then
+            is_release=true
+            tag=${GITHUB_REF#refs/tags/}
+          else
+            is_release=false
+            # 获取最新的发布标签
             tag=$(curl -sX GET "https://api.github.com/repos/${{ github.repository }}/releases/latest" --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' | awk '/tag_name/{print $4}' FS='["]')
-            if [[ $tag != v* ]]; then
+            if [[ ! $tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9]+)?$ ]]; then
               tag="v0.0.0"
             fi
             tag=$(date "+$tag-%y%m%d-$(git rev-parse --short HEAD)")
