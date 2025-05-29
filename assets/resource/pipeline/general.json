@@ -10,30 +10,7 @@
         }
     },
     "ReturnMain": {
-        "doc": "返回主界面，任务开始前用",
-        "post_wait_freezes": 800,
-        "next": [
-            "Lobby"
-        ],
-        "interrupt": [
-            "Backbutton",
-            "Notice",
-            "FLASHSALE",
-            "CloseBulletin",
-            "FirstCharge",
-            "RELEASELoginEnd",
-            "RELEASELogin",
-            "ClickRELEASELogin",
-            "CloseRELEASELogin",
-            "Wishlist",
-            "ClickStart",
-            "Downloading",
-            "Update",
-            "StartNikke"
-        ]
-    },
-    "Backbutton": {
-        "doc": "返回主界面按钮",
+        "doc": "返回主界面按钮，任务开始前用",
         "recognition": "OCR",
         "expected": [
             "返回"

@@ -36,9 +36,6 @@
         "next": [
             "Store_Paid_Normal",
             "Store_Paid_Yes"
-        ],
-        "interrupt": [
-            "ReturnMain"
         ]
     },
     "Store_Paid_Normal": {
@@ -46,9 +43,9 @@
         "recognition": "TemplateMatch",
         "template": "Store/Store_Paid_Normal.png",
         "roi": [
-            119,
+            8,
             134,
-            49,
+            290,
             48
         ],
         "action": "Click",
