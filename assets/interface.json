@@ -1,6 +1,6 @@
 {
     "name": "MNA",
-    "url": "https://github.com/Tohkahb/MNA"
+    "url": "https://github.com/Tohkahb/MNA",
     "controller": [
         {
             "name": "ADB 默认方式",
