@@ -106,6 +106,7 @@
             31
         ],
         "action": "Click",
+        "post_wait_freezes": 100,
         "next": [
             "Consult_Comfirm",
             "Consult_Consult"
@@ -124,6 +125,7 @@
             31
         ],
         "action": "Click",
+        "post_wait_freezes": 300,
         "next": [
             "Consult_Auto",
             "Consult_Comfirm"
@@ -142,9 +144,10 @@
             33
         ],
         "action": "Click",
+        "post_wait_freezes": 300,
         "next": [
-            "Consult_Auto",
-            "Consult_Auto_On"
+            "Consult_Auto_On",
+            "Consult_Auto"
         ]
     },
     "Consult_Auto_On": {
@@ -160,6 +163,7 @@
             78,
             42
         ],
+        "post_wait_freezes": 300,
         "next": [
             "Consult_Select",
             "Consult_Auto_On"
@@ -203,6 +207,7 @@
             55
         ],
         "action": "Click",
+        "post_wait_freezes": 300,
         "next": [
             "Consult_Next",
             "Consult_Levelup"
@@ -221,9 +226,9 @@
         "action": "Click",
         "post_wait_freezes": 100,
         "next": [
+            "Consult_Stop",
             "Consult_Next1",
-            "Consult_Next",
-            "Consult_Stop"
+            "Consult_Next"
         ]
     },
     "Consult_Next1": {

@@ -5,7 +5,20 @@
             "IdleReward_No"
         ],
         "interrupt": [
-            "ReturnMain"
+            "ReturnMain",
+            "Notice",
+            "FLASHSALE",
+            "CloseBulletin",
+            "FirstCharge",
+            "RELEASELoginEnd",
+            "RELEASELogin",
+            "ClickRELEASELogin",
+            "CloseRELEASELogin",
+            "Wishlist",
+            "ClickStart",
+            "Downloading",
+            "Update",
+            "StartNikke"
         ]
     },
     "IdleReward_No": {
@@ -17,7 +30,8 @@
             569,
             12,
             12
-        ]
+        ],
+        "threshold": 0.5
     },
     "IdleReward_Yes": {
         "doc": "有挂机奖励待领取",

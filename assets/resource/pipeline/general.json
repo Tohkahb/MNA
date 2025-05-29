@@ -10,7 +10,7 @@
         }
     },
     "ReturnMain": {
-        "doc": "返回主界面，任务开始前用",
+        "doc": "返回主界面按钮，任务开始前用",
         "recognition": "OCR",
         "expected": [
             "返回"
