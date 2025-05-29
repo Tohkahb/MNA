@@ -71,6 +71,12 @@ jobs:
         with:
           submodules: true  # 同时检出子模块
 
+      - name: Setup Embed Python #下载python嵌入式版本
+        if: matrix.os == 'win'
+        shell: powershell
+        run: |
+          ./tools/ci/setup_embed_python.ps1
+
       - name: Download MaaFramework  # 下载MAA框架
         uses: robinraju/release-downloader@v1
         with:
@@ -79,6 +85,8 @@ jobs:
           latest: true
           out-file-path: "deps"
           extract: true
+
+
 
       - name: Download MFAAvalonia  # 下载MFAAvalonia(Android除外)
         if: matrix.os != 'android'

@@ -13,6 +13,8 @@ current_dir = os.path.dirname(current_file_path)
 parent_dir = os.path.dirname(current_dir)
 os.chdir(parent_dir)
 logger.info(f"工作目录已设置为: {parent_dir}")
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
 
 DEFAULT_CONFIG = {
     "enable_pip_update": True,
@@ -178,6 +180,7 @@ def agent():
         sys.exit(1)
 
 def main():
+    logger.info(f"当前Python路径: {sys.executable}")
     setup_environment()
     agent()
 
