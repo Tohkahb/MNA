@@ -195,10 +195,6 @@ jobs:
           checksum_file="checksums.sha256"
           touch "$checksum_file"
 
-          echo "Removing existing MFAAvalonia zip files..."
-          rm -f MFAAvalonia*.zip
-          
-          # 开始打包其他文件
           for f in *; do
             if [ -d "$f" ]; then
               echo "Processing directory: $f"
@@ -206,6 +202,7 @@ jobs:
               (cd "$f" && zip -r "../$zip_file" .)
               if [ $? -eq 0 ]; then
                 echo "ZIP file created: ../$zip_file"
+                echo "Processing directory: $f"
                 sha256sum "$zip_file" >> "$checksum_file"
                 echo "" >> "$checksum_file"
               else
