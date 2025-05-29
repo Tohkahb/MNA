@@ -57,21 +57,24 @@ def update_pip(config: Dict[str, Any]):
             logger.warning(f"镜像 {mirror} 更新pip失败：{e.stderr}")
     return False
 
-def get_available_mirror(config: Dict[str, Any]) -> Optional[str]:
-    """获取首个可用的镜像源"""
-    mirrors = [config["mirror"]] + config["backup_mirrors"]
+def get_available_mirror(pip_config: dict) -> str:
+    """检查镜像源可用性并返回一个可用的镜像源"""
+    mirrors = [pip_config.get("mirror")] + pip_config.get("backup_mirrors", [])
     for mirror in mirrors:
         try:
-            # 测试镜像源可用性
-            subprocess.run(
-                [sys.executable, "-m", "pip", "search", "pip", "-i", mirror],
-                check=True,
+            logger.info(f"尝试连接镜像源: {mirror}")
+            response = subprocess.run(
+                [sys.executable, "-m", "pip", "list", "-i", mirror],
                 stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL
+                stderr=subprocess.DEVNULL,
+                timeout=5,
             )
-            return mirror
-        except subprocess.CalledProcessError:
-            continue
+            if response.returncode == 0:
+                logger.info(f"镜像源可用: {mirror}")
+                return mirror
+        except Exception:
+            logger.warning(f"镜像源不可用: {mirror}")
+    logger.error("所有镜像源都不可用")
     return None
 
 def install_requirements(config: Dict[str, Any], req_file: str = "requirements.txt") -> bool:
