@@ -168,7 +168,8 @@ jobs:
 
 
   release:
-    if: ${{ needs.meta.outputs.is_release == 'true' }}
+    
+    if: true  # if: ${{ needs.meta.outputs.is_release == 'true' }}
     needs: [meta, windows, unix]
     runs-on: ubuntu-latest
     steps:
