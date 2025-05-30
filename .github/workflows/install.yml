@@ -112,7 +112,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: M9A-win-${{ matrix.arch }}
+          name: MNA-win-${{ matrix.arch }}
           path: "install"
 
   unix:
@@ -167,7 +167,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: M9A-${{ matrix.os == 'ubuntu-latest' && 'linux' || 'macos' }}-${{ matrix.arch }}
+          name: MNA-${{ matrix.os == 'ubuntu-latest' && 'linux' || 'macos' }}-${{ matrix.arch }}
           path: "install"
 
 
