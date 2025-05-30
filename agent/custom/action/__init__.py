@@ -1,5 +1,6 @@
 from .general import *
 
 __all__ = [
-    "Screenshot"
+    "Screenshot",
+    "SelectRookieOpponent"
 ]
