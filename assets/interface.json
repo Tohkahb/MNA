@@ -105,8 +105,13 @@
         "新人竞技场": {
             "cases": [
                 {
-                    "name": "Yes",
+                    "name": "打第一个",
                     "pipeline_override": {
+                        "SelectRookieOpponent": {
+                            "custom_action_param": {
+                                "opponent": "1"
+                            }
+                        },
                         "TargetStageName": {
                             "expected": [
                                 "竞技场"
@@ -119,10 +124,21 @@
                     }
                 },
                 {
-                    "name": "No",
+                    "name": "打第三个",
                     "pipeline_override": {
-                        "EnterRookie": {
-                            "enabled": false
+                        "SelectRookieOpponent": {
+                            "custom_action_param": {
+                                "opponent": "3"
+                            }
+                        },
+                        "TargetStageName": {
+                            "expected": [
+                                "竞技场"
+                            ],
+                            "next": [
+                                "EnterRookie",
+                                "TargetStageName"
+                            ]
                         }
                     }
                 }
