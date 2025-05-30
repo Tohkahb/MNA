@@ -153,6 +153,7 @@
         "connected": true,
         "count": 10,
         "action": "Click",
+        "post_wait_freezes": 500,
         "next": [
             "Dispatch_Dispatch",
             "Dispatch_AllDispatch"
