@@ -1,6 +1,6 @@
 {
     "name": "MNA",
-    "url": "https://github.com/Tohkahb/MNA",
+    "url": "https://github.com/MAA-Nikke/MNA",
     "controller": [
         {
             "name": "ADB 默认方式",
@@ -15,6 +15,13 @@
             ]
         }
     ],
+    "agent": {
+        "child_exec": "python",
+        "child_args": [
+            "{PROJECT_DIR}/../agent/main.py",
+            "-u"
+        ]
+    },
     "task": [
         {
             "name": "启动游戏",

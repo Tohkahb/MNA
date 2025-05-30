@@ -33,7 +33,7 @@
             114
         ],
         "next": "Bulletin",
-        "timeout": 3000,
+        "timeout": 4000,
         "on_error": "Lobby"
     },
     "Bulletin": {
@@ -181,7 +181,6 @@
     },
     "RELEASELoginEnd": {
         "doc": "奖励已领取",
-        "post_wait_freezes": 300,
         "recognition": "OCR",
         "expected": [
             "奖励已领取"
@@ -214,7 +213,6 @@
     },
     "CloseRELEASELogin": {
         "doc": "点击关闭领取7天登录奖励",
-        "post_wait_freezes": 300,
         "recognition": "TemplateMatch",
         "template": "Startup/CloseRELEASELogin.png",
         "roi": [

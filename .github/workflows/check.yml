@@ -33,4 +33,4 @@ jobs:
 
       - name: Check Resource  # 检查资源文件
         run: |
-            python ./check_resource.py ./assets/resource/  # 执行资源检查脚本
+            python ./tools/ci/check_resource.py ./assets/resource/  # 执行资源检查脚本

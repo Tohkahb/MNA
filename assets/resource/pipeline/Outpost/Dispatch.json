@@ -55,7 +55,7 @@
         "doc": "等待页面加载，找到派遣公告栏",
         "recognition": "OCR",
         "expected": [
-            "派遣",
+            "派遣公告栏",
             "公告栏"
         ],
         "roi": [
@@ -153,6 +153,7 @@
         "connected": true,
         "count": 10,
         "action": "Click",
+        "post_wait_freezes": 500,
         "next": [
             "Dispatch_Dispatch",
             "Dispatch_AllDispatch"
