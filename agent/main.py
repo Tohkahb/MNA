@@ -177,6 +177,8 @@ def agent():
         from utils import logger
         from maa.agent.agent_server import AgentServer
         from maa.toolkit import Toolkit
+        import custom
+        
         Toolkit.init_option("./")
 
         socket_id = sys.argv[-1]
