@@ -96,7 +96,7 @@
             0,
             0
         ],
-        "post_wait_freezes": 500,
+        "post_wait_freezes": 300,
         "next": [
             "Awards_Receive",
             "Awards_1",
@@ -120,7 +120,7 @@
             30
         ],
         "action": "Click",
-        "post_wait_freezes": 500,
+        "post_wait_freezes": 300,
         "next": [
             "Awards_1",
             "Awards_Completed"
@@ -159,6 +159,7 @@
         ],
         "next": [
             "MissionPass_Yes",
+            "MissionPass_Swith",
             "Awards_Completed",
             "MissionPass_No"
         ]
@@ -199,6 +200,40 @@
             "MissionPass_1",
             "MissionPass_Yes",
             "MissionPass_Completed"
+        ]
+    },
+    "MissionPass_Swith": {
+        "doc": "切换通行证的按钮有红点",
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            130,
+            60
+        ],
+        "roi": [
+            1134,
+            104,
+            18,
+            21
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -7,
+            7,
+            0,
+            0
+        ],
+        "post_wait_freezes": 500,
+        "next": [
+            "MissionPass_Yes",
+            "MissionPass_Swith"
         ]
     },
     "MissionPass_1": {
@@ -280,6 +315,7 @@
         ],
         "next": [
             "MissionPass_Yes",
+            "MissionPass_Swith",
             "Lobby"
         ]
     }

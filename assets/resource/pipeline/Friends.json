@@ -41,7 +41,7 @@
         "connected": true,
         "count": 10,
         "action": "Click",
-        "post_wait_freezes": 300,
+        "post_wait_freezes": 100,
         "target_offset": [
             -10,
             10,
@@ -66,7 +66,7 @@
             47
         ],
         "action": "Click",
-        "post_wait_freezes": 500,
+        "post_wait_freezes": 100,
         "next": [
             "Presented"
         ],
@@ -96,7 +96,7 @@
         ],
         "connected": true,
         "count": 300,
-        "post_wait_freezes": 300,
+        "post_wait_freezes": 100,
         "action": "Click",
         "target": [
             872,
