@@ -62,6 +62,25 @@
             0
         ],
         "next": [
+            "IdleRewardFlag"
+        ]
+    },
+    "IdleRewardFlag": {
+        "doc": "挂机奖励界面",
+        "recognition": "OCR",
+        "expected": [
+            "防御",
+            "前哨",
+            "基地"
+        ],
+        "roi": [
+            479,
+            76,
+            159,
+            40
+        ],
+        "post_wait_freezes": 100,
+        "next": [
             "IdleReward_2h",
             "IdleReward_Acquire",
             "IdleReward_Yes"
