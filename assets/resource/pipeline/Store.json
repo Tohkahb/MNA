@@ -147,7 +147,8 @@
             "Store_No"
         ],
         "interrupt": [
-            "ReturnMain"
+            "ReturnMain",
+            "Awards_Confirm"
         ]
     },
     "Store_No": {
