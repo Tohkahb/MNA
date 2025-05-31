@@ -50,7 +50,7 @@
             0,
             0
         ],
-        "post_wait_freezes": 100,
+        "post_wait_freezes": 300,
         "next": [
             "Mail_Receive",
             "Mail_Yes"
@@ -71,7 +71,8 @@
         "action": "Click",
         "target": true,
         "next": [
-            "Mail_Confirm"
+            "Mail_Confirm",
+            "Mail_Receive"
         ]
     },
     "Mail_Confirm": {
