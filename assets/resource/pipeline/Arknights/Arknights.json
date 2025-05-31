@@ -8,8 +8,10 @@
         ]
     },
     "EnterArknights": {
-        "recognition": "TemplateMatch",
-        "template": "Arknights/EnterArknights.png",
+        "recognition": "OCR",
+        "expected": [
+            "方舟"
+        ],
         "roi": [
             839,
             455,

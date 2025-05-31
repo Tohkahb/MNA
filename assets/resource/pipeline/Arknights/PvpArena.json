@@ -54,20 +54,20 @@
     },
     "FreeBattlesLeft": {
         "doc": "免费战斗",
-        "recognition": "OCR",
-        "expected": [
-            "免费"
-        ],
-        "roi": [
-            718,
-            367,
-            110,
-            272
-        ],
+        "recognition": "Custom",
+        "custom_recognition": "FreeBattlesLeft",
+        "custom_recognition_param": {
+            "opponent": "1"
+        },
         "action": "Click",
         "next": [
             "EnterBattle"
         ]
+    },
+    "FreeBattlesTemplate": {
+        "recognition": "OCR",
+        "expected_code": "set in code",
+        "only_rec": true
     },
     "EnterBattle": {
         "recognition": "OCR",

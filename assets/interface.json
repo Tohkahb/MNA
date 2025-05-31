@@ -107,9 +107,28 @@
                 {
                     "name": "打第一个",
                     "pipeline_override": {
-                        "SelectRookieOpponent": {
-                            "custom_action_param": {
+                        "FreeBattlesLeft": {
+                            "custom_recognition_param": {
                                 "opponent": "1"
+                            }
+                        },
+                        "TargetStageName": {
+                            "expected": [
+                                "竞技场"
+                            ],
+                            "next": [
+                                "EnterRookie",
+                                "TargetStageName"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "打第二个",
+                    "pipeline_override": {
+                        "FreeBattlesLeft": {
+                            "custom_recognition_param": {
+                                "opponent": "2"
                             }
                         },
                         "TargetStageName": {
@@ -126,8 +145,8 @@
                 {
                     "name": "打第三个",
                     "pipeline_override": {
-                        "SelectRookieOpponent": {
-                            "custom_action_param": {
+                        "FreeBattlesLeft": {
+                            "custom_recognition_param": {
                                 "opponent": "3"
                             }
                         },
