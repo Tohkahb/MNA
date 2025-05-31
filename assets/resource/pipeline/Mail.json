@@ -50,7 +50,7 @@
             0,
             0
         ],
-        "post_wait_freezes": 500,
+        "post_wait_freezes": 100,
         "next": [
             "Mail_Receive",
             "Mail_Yes"
