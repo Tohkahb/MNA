@@ -30,6 +30,21 @@
         "only_rec": true,
         "action": "Click"
     },
+    "Return": {
+        "doc": "返回",
+        "recognition": "OCR",
+        "expected": [
+            "返回"
+        ],
+        "roi": [
+            45,
+            671,
+            33,
+            17
+        ],
+        "only_rec": true,
+        "action": "Click"
+    },
     "GoToLobby": {
         "post_wait_freezes": 300,
         "recognition": "TemplateMatch",
@@ -54,6 +69,32 @@
             430,
             140,
             125
+        ],
+        "action": "Click"
+    },
+    "AutoBurstSkill": {
+        "doc": "是否开启自动爆裂",
+        "recognition": "TemplateMatch",
+        "template": "general/AutoBurstSkill.png",
+        "threshold": 0.8,
+        "roi": [
+            43,
+            12,
+            47,
+            22
+        ],
+        "action": "Click"
+    },
+    "AutoAim": {
+        "doc": "是否开启自动瞄准",
+        "recognition": "TemplateMatch",
+        "template": "general/AutoAim.png",
+        "threshold": 0.8,
+        "roi": [
+            9,
+            14,
+            23,
+            21
         ],
         "action": "Click"
     }

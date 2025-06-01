@@ -1,19 +1,222 @@
 {
-    "EnterTribeTower": {
-        "doc": "无限之塔",
+    "TribeTower": {
+        "doc": "进入无限塔",
         "recognition": "OCR",
+        "roi": [
+            714,
+            272,
+            93,
+            27
+        ],
         "expected": [
             "无限之塔"
         ],
+        "next": [
+            "ConpanyTowerFinish"
+        ],
+        "interrupt": [
+            "EnterConpanyTower"
+        ]
+    },
+    "ConpanyTower": {
+        "doc": "企业四个塔",
+        "action": "Custom",
+        "custom_action": "IsConpanyTowerEnabled"
+    },
+    "EnterConpanyTower": {
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            130,
+            60
+        ],
+        "roi": [
+            524,
+            399,
+            307,
+            17
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -30,
+            10,
+            0,
+            0
+        ],
+        "next": [
+            "ConpanyTowerFlag"
+        ]
+    },
+    "ConpanyTowerFinish": {
+        "recognition": "ColorMatch",
+        "lower": [
+            200,
+            30,
+            0
+        ],
+        "upper": [
+            255,
+            130,
+            60
+        ],
+        "roi": [
+            524,
+            399,
+            307,
+            17
+        ],
+        "connected": true,
+        "count": 10,
+        "inverse": true
+    },
+    "ConpanyTowerFlag": {
+        "doc": "企业塔标志",
+        "recognition": "OCR",
+        "expected": [
+            "塔"
+        ],
+        "roi": [
+            648,
+            594,
+            86,
+            40
+        ],
+        "target": [
+            640,
+            300,
+            0,
+            0
+        ],
+        "action": "Click",
+        "post_delay": 3000,
+        "next": [
+            "EnterTowerBattle",
+            "ConpanyTowerFlag"
+        ],
+        "interrupt": []
+    },
+    "EnterTowerBattle": {
+        "doc": "进入企业塔战斗",
+        "recognition": "OCR",
+        "expected": [
+            "进入战斗"
+        ],
         "roi": [
             708,
-            253,
-            111,
-            76
+            646,
+            82,
+            27
+        ],
+        "action": "Click",
+        "timeout": 60000,
+        "next": [
+            "TowerBattleFlag",
+            "EnterTowerBattle"
+        ],
+        "interrupt": []
+    },
+    "TowerBattleFlag": {
+        "doc": "战斗标志（右上角暂停）",
+        "recognition": "TemplateMatch",
+        "template": "Arknights/TowerBattleFlag.png",
+        "roi": [
+            1253,
+            13,
+            17,
+            20
+        ],
+        "timeout": 300000,
+        "post_delay": 5000,
+        "next": [
+            "NoBattleAttemptsLeft"
+        ],
+        "interrupt": [
+            "HasBattleAttempts",
+            "AutoAim",
+            "AutoBurstSkill"
+        ]
+    },
+    "HasBattleAttempts": {
+        "doc": "有战斗次数",
+        "recognition": "TemplateMatch",
+        "template": "Arknights/HasBattleAttempts.png",
+        "roi": [
+            1148,
+            668,
+            92,
+            20
         ],
         "action": "Click"
     },
-    "EnterConpanyTower": {
-        "doc": "企业四个塔"
+    "NoBattleAttemptsLeft": {
+        "doc": "次数已用完",
+        "recognition": "TemplateMatch",
+        "template": "Arknights/NoBattleAttemptsLeft.png",
+        "threshold": 0.8,
+        "roi": [
+            1148,
+            669,
+            99,
+            38
+        ],
+        "action": "Click",
+        "target_offset": [
+            0,
+            -100,
+            0,
+            0
+        ],
+        "next": [
+            "ConpanyTowerFlag2",
+            "NoBattleAttemptsLeft"
+        ],
+        "interrupt": []
+    },
+    "BattleFailed": {
+        "doc": "战斗失败",
+        "recognition": "OCR",
+        "expected": [
+            "返回"
+        ],
+        "roi": [
+            59,
+            659,
+            31,
+            17
+        ],
+        "only_rec": true,
+        "action": "Click",
+        "next": [
+            "ConpanyTowerFlag2",
+            "BattleFailed"
+        ],
+        "interrupt": []
+    },
+    "ConpanyTowerFlag2": {
+        "doc": "企业塔标志（战斗失败，没次数之后）",
+        "recognition": "OCR",
+        "expected": [
+            "塔"
+        ],
+        "roi": [
+            648,
+            594,
+            86,
+            40
+        ],
+        "next": [
+            "TribeTower",
+            "ConpanyTowerFlag2"
+        ],
+        "interrupt": [
+            "Return"
+        ]
     }
 }

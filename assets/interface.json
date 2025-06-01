@@ -57,10 +57,9 @@
             "entry": "Mail"
         },
         {
-            "name": "无限塔",
+            "name": "企业塔",
             "entry": "Arknights",
             "option": [
-                "无限塔",
                 "企业塔"
             ]
         },
@@ -189,24 +188,6 @@
                 }
             ]
         },
-        "无限塔": {
-            "cases": [
-                {
-                    "name": "Yes",
-                    "pipeline_override": {
-                        "TargetStageName": {
-                            "expected": [
-                                "无限之塔"
-                            ],
-                            "next": [
-                                "EnterTribeTower",
-                                "TargetStageName"
-                            ]
-                        }
-                    }
-                }
-            ]
-        },
         "企业塔": {
             "cases": [
                 {
@@ -217,7 +198,7 @@
                                 "无限之塔"
                             ],
                             "next": [
-                                "EnterConpanyTower",
+                                "TribeTower",
                                 "TargetStageName"
                             ]
                         }

@@ -39,7 +39,6 @@ class FreeBattlesLeft(CustomRecognition):
             argv.image,
             {"FreeBattlesTemplate": {"roi":roi, "expected": expected}}
         )
-        logger.info(f"FreeBattlesTemplate: {reco_detail}")
 
         if reco_detail is None:
             return CustomRecognition.AnalyzeResult(box=None, detail="无文字")
