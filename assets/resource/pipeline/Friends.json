@@ -1,56 +1,28 @@
 {
     "Friends": {
         "next": [
-            "Friends_Yes",
-            "Friends_No"
+            "Friends_1"
         ],
         "interrupt": [
             "ReturnMain"
         ]
     },
-    "Friends_No": {
-        "doc": "好友没有红点",
+    "Friends_1": {
+        "doc": "打开好友界面",
         "recognition": "TemplateMatch",
-        "template": "Awards/Friends_No.png",
+        "template": "Awards/Friends.png",
         "roi": [
-            1247,
-            206,
-            22,
-            26
-        ]
-    },
-    "Friends_Yes": {
-        "doc": "进入好友列表",
-        "recognition": "ColorMatch",
-        "lower": [
+            1217,
             200,
-            30,
-            0
+            61,
+            61
         ],
-        "upper": [
-            255,
-            130,
-            60
-        ],
-        "roi": [
-            1240,
-            200,
-            38,
-            38
-        ],
-        "connected": true,
-        "count": 10,
         "action": "Click",
         "post_wait_freezes": 100,
-        "target_offset": [
-            -10,
-            10,
-            0,
-            0
-        ],
         "next": [
             "Present",
-            "Friends_Yes"
+            "Presented",
+            "Friends_1"
         ]
     },
     "Present": {
