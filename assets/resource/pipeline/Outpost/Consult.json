@@ -179,6 +179,7 @@
             74,
             149
         ],
+        "threshold": 0.5,
         "action": "Click",
         "target_offset": [
             165,

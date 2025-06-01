@@ -143,8 +143,8 @@
             27
         ],
         "next": [
-            "Store_Yes",
-            "Store_No"
+            "Store_No",
+            "Store_Yes"
         ],
         "interrupt": [
             "ReturnMain",
@@ -164,32 +164,18 @@
     },
     "Store_Yes": {
         "doc": "打开商店",
-        "recognition": "ColorMatch",
-        "lower": [
-            200,
-            30,
-            0
-        ],
-        "upper": [
-            255,
-            130,
-            60
+        "recognition": "OCR",
+        "expected": [
+            "商店"
         ],
         "roi": [
-            433,
-            446,
-            20,
-            20
+            356,
+            467,
+            65,
+            43
         ],
-        "connected": true,
-        "count": 10,
         "action": "Click",
-        "target_offset": [
-            -25,
-            25,
-            0,
-            0
-        ],
+        "post_wait_freezes": 100,
         "next": [
             "Store_Normal",
             "Store_Yes"
@@ -197,32 +183,15 @@
     },
     "Store_Normal": {
         "doc": "选择普通商店",
-        "recognition": "ColorMatch",
-        "lower": [
-            200,
-            30,
-            0
-        ],
-        "upper": [
-            255,
-            130,
-            60
-        ],
+        "recognition": "TemplateMatch",
+        "template": "Store/Store_Normal.png",
         "roi": [
-            39,
-            249,
-            20,
-            20
+            8,
+            264,
+            45,
+            42
         ],
-        "connected": true,
-        "count": 10,
         "action": "Click",
-        "target_offset": [
-            -25,
-            25,
-            0,
-            0
-        ],
         "next": [
             "Store_Free",
             "Store_Normal"
@@ -280,11 +249,64 @@
         "action": "Click",
         "post_wait_freezes": 500,
         "next": [
+            "Store_FreeRefresh",
             "Store_Completed",
             "Store_Buy"
         ],
         "interrupt": [
             "Awards_Confirm"
+        ]
+    },
+    "Store_FreeRefresh": {
+        "doc": "点击免费刷新商店",
+        "recognition": "ColorMatch",
+        "lower": [
+            235,
+            70,
+            0
+        ],
+        "upper": [
+            255,
+            90,
+            20
+        ],
+        "roi": [
+            229,
+            306,
+            33,
+            16
+        ],
+        "connected": true,
+        "count": 10,
+        "action": "Click",
+        "target_offset": [
+            -8,
+            10,
+            0,
+            0
+        ],
+        "post_wait_freezes": 100,
+        "next": [
+            "Store_FreeRefresh_Confirm",
+            "Store_FreeRefresh"
+        ]
+    },
+    "Store_FreeRefresh_Confirm": {
+        "doc": "点击免费刷新商店后的确定",
+        "recognition": "OCR",
+        "expected": [
+            "确认"
+        ],
+        "roi": [
+            712,
+            435,
+            40,
+            31
+        ],
+        "action": "Click",
+        "next": [
+            "Store_Free",
+            "Store_Normal"
         ]
     },
     "Store_Completed": {
