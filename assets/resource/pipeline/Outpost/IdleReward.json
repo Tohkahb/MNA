@@ -166,7 +166,8 @@
             "IdleReward_Acquire_No"
         ],
         "interrupt": [
-            "Awards_Confirm"
+            "Awards_Confirm",
+            "FLASHSALE"
         ]
     },
     "IdleReward_Acquire_No": {
