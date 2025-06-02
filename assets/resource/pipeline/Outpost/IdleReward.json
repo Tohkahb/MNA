@@ -65,6 +65,22 @@
         "next": [
             "IdleRewardFlag",
             "IdleReward_Yes"
+        ],
+        "interrupt": [
+            "ReturnMain",
+            "Notice",
+            "FLASHSALE",
+            "CloseBulletin",
+            "FirstCharge",
+            "RELEASELoginEnd",
+            "RELEASELogin",
+            "ClickRELEASELogin",
+            "CloseRELEASELogin",
+            "Wishlist",
+            "ClickStart",
+            "Downloading",
+            "Update",
+            "StartNikke"
         ]
     },
     "IdleRewardFlag": {
