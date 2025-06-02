@@ -41,6 +41,7 @@
         "connected": true,
         "count": 10,
         "action": "Click",
+        "timeout": 60000,
         "target_offset": [
             -20,
             20,
