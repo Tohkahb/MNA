@@ -84,6 +84,7 @@ jobs:
           extract: true
 
       - name: Download MFAAvalonia  
+        id: download_mfa
         uses: robinraju/release-downloader@v1  
         with:
           repository: SweetSmellFox/MFAAvalonia
@@ -91,6 +92,14 @@ jobs:
           latest: true
           out-file-path: "MFA"
           extract: true
+
+      - name: Clean up MFAAvalonia archive
+        if: steps.download_mfa.outputs.downloaded_files != ''
+        shell: bash
+        run: |
+          ARCHIVE_FILE="${{ fromJson(steps.download_mfa.outputs.downloaded_files)[0] }}"
+          echo "Removing archive file: $ARCHIVE_FILE"
+          rm -f "$ARCHIVE_FILE"
 
       - name: Setup Embed Python
         shell: powershell
@@ -140,6 +149,7 @@ jobs:
           extract: true
 
       - name: Download MFAAvalonia  
+        id: download_mfa 
         uses: robinraju/release-downloader@v1  
         with:
           repository: SweetSmellFox/MFAAvalonia
@@ -148,22 +158,28 @@ jobs:
           out-file-path: "MFA"
           extract: true
 
+      - name: Clean up MFAAvalonia archive 
+        if: steps.download_mfa.outputs.downloaded_files != ''
+        shell: bash
+        run: |
+          ARCHIVE_FILE="${{ fromJson(steps.download_mfa.outputs.downloaded_files)[0] }}"
+          echo "Removing archive file: $ARCHIVE_FILE"
+          rm -f "$ARCHIVE_FILE"
+
       - name: Install
         shell: bash
         run: |
           python ./tools/install.py ${{ needs.meta.outputs.tag }}
 
-          if [[ "${{ matrix.os }}" != "android" ]]; then
-            if [ -d "MFA" ]; then
-              echo "Copying MFA files to install directory..."
-              mkdir -p install
-              rsync -av --ignore-existing MFA/ install/
-            else
-              echo "MFA directory not found, skipping copy."
-            fi
+
+          if [ -d "MFA" ]; then
+            echo "Copying MFA files to install directory..."
+            mkdir -p install
+            rsync -av --ignore-existing MFA/ install/
           else
-            echo "Skipping copy MFA for Android."
+            echo "MFA directory not found, skipping copy."
           fi
+          
 
       - uses: actions/upload-artifact@v4
         with:
@@ -218,6 +234,6 @@ jobs:
         with:
           files: assets/*
           tag_name: ${{ needs.meta.outputs.tag }}
-          body: ${{ needs.changelog.outputs.release_body }}
+          
           draft: false
           prerelease: ${{ needs.meta.outputs.is_prerelease == 'true' }}
