@@ -212,11 +212,11 @@
             40
         ],
         "next": [
-            "TribeTower",
-            "ConpanyTowerFlag2"
+            "TribeTower"
         ],
         "interrupt": [
-            "Return"
+            "Return",
+            "ConpanyTowerFlag2"
         ]
     }
 }
