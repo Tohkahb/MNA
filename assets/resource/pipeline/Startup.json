@@ -180,7 +180,7 @@
     },
     "RELEASELogin": {
         "doc": "领取7天登录奖励",
-        "post_wait_freezes": 100,
+        "post_wait_freezes": 200,
         "recognition": "OCR",
         "expected": [
             "领取"
@@ -197,7 +197,7 @@
     },
     "RELEASELoginEnd": {
         "doc": "奖励已领取",
-        "post_wait_freezes": 100,
+        "post_wait_freezes": 200,
         "recognition": "OCR",
         "expected": [
             "奖励已领取"
