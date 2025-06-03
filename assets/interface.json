@@ -78,6 +78,10 @@
         {
             "name": "任务和通证证奖励",
             "entry": "Awards"
+        },
+        {
+            "name": "关闭游戏",
+            "entry": "CloseNikke"
         }
     ],
     "option": {

@@ -93,6 +93,10 @@
         "action": "StartApp",
         "package": "com.tencent.nikke"
     },
+    "CloseNikke": {
+        "action": "StopApp",
+        "package": "com.tencent.nikke"
+    },
     "Update": {
         "recognition": "OCR",
         "expected": [
