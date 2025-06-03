@@ -5,7 +5,20 @@
             "Mail_No"
         ],
         "interrupt": [
-            "ReturnMain"
+            "ReturnMain",
+            "Notice",
+            "FLASHSALE",
+            "CloseBulletin",
+            "FirstCharge",
+            "RELEASELoginEnd",
+            "RELEASELogin",
+            "ClickRELEASELogin",
+            "CloseRELEASELogin",
+            "Wishlist",
+            "ClickStart",
+            "Downloading",
+            "Update",
+            "StartNikke"
         ]
     },
     "Mail_No": {
