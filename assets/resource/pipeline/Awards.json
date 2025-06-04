@@ -60,6 +60,7 @@
             0,
             0
         ],
+        "post_wait_freezes": 100,
         "next": [
             "Awards_Task",
             "Awards_Yes"

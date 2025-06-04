@@ -32,7 +32,25 @@
         ],
         "next": [
             "NoFreeBattlesLeft",
-            "FreeBattlesLeft"
+            "FreeBattlesLeft",
+            "Seasonisover",
+            "RookieFlag"
+        ]
+    },
+    "Seasonisover": {
+        "doc": "提示赛季已结束",
+        "recognition": "OCR",
+        "expected": [
+            "赛季已结束"
+        ],
+        "roi": [
+            550,
+            296,
+            243,
+            120
+        ],
+        "next": [
+            "ReturnMain"
         ]
     },
     "NoFreeBattlesLeft": {
@@ -138,7 +156,9 @@
         ],
         "action": "Click",
         "next": [
-            "SpecialFlag"
+            "SpecialFlag",
+            "Seasonisover",
+            "EnterSpecial"
         ]
     },
     "SpecialFlag": {

@@ -150,7 +150,8 @@
         "action": "Click",
         "target": true,
         "next": [
-            "Lobby"
+            "Lobby",
+            "ReturnMain"
         ]
     }
 }
