@@ -22,7 +22,7 @@
         ]
     },
     "Awards_No": {
-        "doc": "最右上角的任务奖励没有红点",
+        "doc": "最右上角的任务奖励没有红点,直接进行领取通行证步骤",
         "recognition": "TemplateMatch",
         "template": "Awards/Awards_No.png",
         "roi": [
@@ -30,6 +30,12 @@
             151,
             25,
             25
+        ],
+        "next": [
+            "MissionPass_Yes",
+            "MissionPass_Swith",
+            "Awards_Completed",
+            "MissionPass_No"
         ]
     },
     "Awards_Yes": {
@@ -179,7 +185,10 @@
         ]
     },
     "MissionPass_No": {
-        "doc": "暂时没想到没有红点，怎么直接跳过该任务"
+        "doc": "暂时没想到没有红点，怎么直接跳过该任务",
+        "next": [
+            "Lobby"
+        ]
     },
     "MissionPass_Yes": {
         "doc": "通行证有红点",
