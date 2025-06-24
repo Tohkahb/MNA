@@ -180,7 +180,7 @@
     },
     "RELEASELogin": {
         "doc": "领取7天登录奖励",
-        "post_wait_freezes": 200,
+        "pre_wait_freezes": 300,
         "recognition": "OCR",
         "expected": [
             "领取"
@@ -197,16 +197,16 @@
     },
     "RELEASELoginEnd": {
         "doc": "奖励已领取",
-        "post_wait_freezes": 200,
+        "pre_wait_freezes": 300,
         "recognition": "OCR",
         "expected": [
             "奖励已领取"
         ],
         "roi": [
-            427,
-            348,
-            412,
-            45
+            387,
+            338,
+            481,
+            44
         ],
         "next": "CloseRELEASELogin"
     },
