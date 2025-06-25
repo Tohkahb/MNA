@@ -73,7 +73,8 @@
         ]
     },
     "ClickStart": {
-        "post_wait_freezes": 300,
+        "doc": "点击开始",
+        "pre_wait_freezes": 300,
         "recognition": "OCR",
         "expected": [
             "点击开始",
@@ -81,13 +82,13 @@
             "开始"
         ],
         "roi": [
-            307,
-            476,
-            681,
-            149
+            603,
+            557,
+            72,
+            24
         ],
-        "timeout": 60000,
-        "action": "Click"
+        "action": "Click",
+        "target": true
     },
     "StartNikke": {
         "action": "StartApp",

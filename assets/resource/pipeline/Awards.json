@@ -204,10 +204,10 @@
             60
         ],
         "roi": [
-            1260,
-            87,
-            20,
-            25
+            1261,
+            92,
+            19,
+            149
         ],
         "connected": true,
         "count": 10,
@@ -220,6 +220,7 @@
         ],
         "post_wait_freezes": 500,
         "next": [
+            "MissionPass_Swith",
             "MissionPass_1",
             "MissionPass_Yes",
             "MissionPass_Completed"
@@ -339,6 +340,22 @@
         "next": [
             "MissionPass_Yes",
             "MissionPass_Swith",
+            "MissionPass_close_list"
+        ]
+    },
+    "MissionPass_close_list": {
+        "doc": "关闭通行证列表",
+        "recognition": "TemplateMatch",
+        "template": "Awards/MissionPass_close_list.png",
+        "roi": [
+            1084,
+            103,
+            37,
+            37
+        ],
+        "action": "Click",
+        "target": true,
+        "next": [
             "Lobby"
         ]
     }

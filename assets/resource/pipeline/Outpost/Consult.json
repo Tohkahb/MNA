@@ -185,14 +185,17 @@
     "Consult_Select": {
         "doc": "选择第一个对话选项",
         "recognition": "TemplateMatch",
-        "template": "Outpost/Consult_Select.png",
+        "template": [
+            "Outpost/Consult_Select_Love.png",
+            "Outpost/Consult_Select.png"
+        ],
         "roi": [
             453,
             441,
             74,
             149
         ],
-        "threshold": 0.5,
+        "threshold": 0.4,
         "action": "Click",
         "target_offset": [
             165,
