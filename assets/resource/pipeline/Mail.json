@@ -108,33 +108,19 @@
         ]
     },
     "Mail_Received": {
-        "doc": "领取完成，识别赠送按钮变灰",
-        "recognition": "ColorMatch",
-        "lower": [
-            120,
-            120,
-            120
-        ],
-        "upper": [
-            140,
-            140,
-            140
+        "doc": "领取完成，识别已经没有领取的奖励",
+        "recognition": "OCR",
+        "expected": [
+            "没有可领取的奖励"
         ],
         "roi": [
-            684,
-            597,
-            40,
-            32
+            462,
+            338,
+            361,
+            42
         ],
-        "connected": true,
-        "count": 300,
-        "post_wait_freezes": 100,
-        "action": "Click",
-        "target": [
-            872,
-            341,
-            40,
-            40
+        "next": [
+            "CloseMail"
         ]
     },
     "CloseMail": {
