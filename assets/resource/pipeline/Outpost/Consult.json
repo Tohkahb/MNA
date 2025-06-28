@@ -179,7 +179,28 @@
         "post_wait_freezes": 300,
         "next": [
             "Consult_Select",
-            "Consult_Auto_On"
+            "Consult_Auto_On",
+            "Consult_Skip"
+        ]
+    },
+    "Consult_Skip": {
+        "doc": "跳过咨询",
+        "post_wait_freezes": 300,
+        "recognition": "OCR",
+        "expected": [
+            "跳过"
+        ],
+        "roi": [
+            1194,
+            0,
+            86,
+            40
+        ],
+        "action": "Click",
+        "next": [
+            "Consult_Levelup",
+            "Consult_Next",
+            "Consult_Select"
         ]
     },
     "Consult_Select": {
@@ -205,6 +226,7 @@
         ],
         "post_wait_freezes": 100,
         "next": [
+            "Consult_Skip",
             "Consult_Levelup",
             "Consult_Next",
             "Consult_Select"
@@ -226,6 +248,7 @@
         "action": "Click",
         "post_wait_freezes": 300,
         "next": [
+            "Consult_Skip",
             "Consult_Next",
             "Consult_Levelup"
         ]

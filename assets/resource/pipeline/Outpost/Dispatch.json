@@ -170,7 +170,8 @@
         "post_wait_freezes": 500,
         "next": [
             "Dispatch_Dispatch",
-            "Dispatch_AllDispatch"
+            "Dispatch_AllDispatch",
+            "Dispatch_AllReceive"
         ]
     },
     "Dispatch_AllReceive": {
