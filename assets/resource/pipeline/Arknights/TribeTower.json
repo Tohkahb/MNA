@@ -177,7 +177,9 @@
             "ConpanyTowerFlag2",
             "NoBattleAttemptsLeft"
         ],
-        "interrupt": []
+        "interrupt": [
+            "FLASHSALE"
+        ]
     },
     "BattleFailed": {
         "doc": "战斗失败",
@@ -197,7 +199,9 @@
             "ConpanyTowerFlag2",
             "BattleFailed"
         ],
-        "interrupt": []
+        "interrupt": [
+            "FLASHSALE"
+        ]
     },
     "ConpanyTowerFlag2": {
         "doc": "企业塔标志（战斗失败，没次数之后）",
@@ -215,6 +219,7 @@
             "TribeTower"
         ],
         "interrupt": [
+            "FLASHSALE",
             "Return",
             "ConpanyTowerFlag2"
         ]

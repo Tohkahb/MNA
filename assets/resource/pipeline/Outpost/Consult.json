@@ -186,7 +186,6 @@
     },
     "Consult_Skip": {
         "doc": "跳过咨询",
-        "post_wait_freezes": 300,
         "recognition": "OCR",
         "expected": [
             "跳过"
@@ -235,7 +234,7 @@
         ]
     },
     "Consult_Select_Love": {
-        "doc": "选择第一个对话选项",
+        "doc": "选择有爱心选项",
         "recognition": "TemplateMatch",
         "template": [
             "Outpost/Consult_Select_Love.png"
