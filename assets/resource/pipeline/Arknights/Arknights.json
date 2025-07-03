@@ -36,9 +36,6 @@
         "next": [
             "TargetStageName",
             "EnterArknights"
-        ],
-        "interrupt": [
-            "FLASHSALE"
         ]
     },
     "TargetStageName": {
