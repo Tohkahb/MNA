@@ -166,7 +166,6 @@
         "on_error": "Lobby"
     },
     "Notice": {
-        "post_wait_freezes": 300,
         "recognition": "TemplateMatch",
         "template": "Startup/Notice.png",
         "roi": [
