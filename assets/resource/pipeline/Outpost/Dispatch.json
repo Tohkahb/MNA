@@ -114,8 +114,8 @@
             0
         ],
         "next": [
-            "Dispatch_AllDispatch",
             "Dispatch_AllReceive",
+            "Dispatch_AllDispatch",
             "Dispatch_1_Yes"
         ]
     },
