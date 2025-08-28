@@ -127,10 +127,10 @@
         "recognition": "TemplateMatch",
         "template": "Arknights/TowerBattleFlag.png",
         "roi": [
-            1253,
-            13,
-            17,
-            20
+            1236,
+            15,
+            37,
+            36
         ],
         "timeout": 300000,
         "post_delay": 5000,
@@ -148,10 +148,10 @@
         "recognition": "TemplateMatch",
         "template": "Arknights/HasBattleAttempts.png",
         "roi": [
-            1148,
-            668,
-            92,
-            20
+            1095,
+            620,
+            185,
+            100
         ],
         "action": "Click"
     },
@@ -161,10 +161,10 @@
         "template": "Arknights/NoBattleAttemptsLeft.png",
         "threshold": 0.8,
         "roi": [
-            1148,
-            669,
-            99,
-            38
+            1095,
+            620,
+            185,
+            100
         ],
         "action": "Click",
         "target_offset": [
